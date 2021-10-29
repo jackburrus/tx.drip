@@ -85,15 +85,17 @@ export default function BallPit(props) {
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
-				anchorX="left" // default
-				anchorY="bottom-baseline"
+				position={[5, 0, 5]}
+				// anchorX="left" // default
+				// anchorY="bottom-baseline"
 				// default
 			>
-				{txData ? txData.id : null}
+				{txData ? txData['token0'].name : null}
 			</Text>
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
+				position={[10, 0, 5]}
 				anchorX="center" // default
 				anchorY="top" // default
 			>
@@ -102,6 +104,7 @@ export default function BallPit(props) {
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
+				position={[10, 0, 5]}
 				anchorX="center" // default
 				anchorY="top-baseline" // default
 			>
