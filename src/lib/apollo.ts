@@ -53,10 +53,12 @@ export const SWAP_DATA_QUERY = gql`
 				token0 {
 					id
 					name
+					symbol
 				}
 				token1 {
 					id
 					name
+					symbol
 				}
 			}
 		}

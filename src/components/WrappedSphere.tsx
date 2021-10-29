@@ -1,7 +1,8 @@
 import { useSphere } from '@react-three/cannon';
 import { useTexture } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { CoinManifest } from './CoinManifest';
 
 interface Props {
 	count: number;
@@ -12,7 +13,19 @@ export const WrappedSphere = (props: Props) => {
 	const { count, data, setTxData } = props;
 	const { viewport } = useThree();
 	const [hover, setHover] = useState(false);
-	const texture = useTexture('/FormattedImages/AAVE.png');
+	const [texturePath, setTexturePath] = useState('/FormattedImages/AAVE.png');
+	const texture = useTexture(texturePath);
+
+	useEffect(() => {
+		const coin = CoinManifest.filter((coin) => coin.symbol === data['token0'].symbol);
+		if (coin.length > 0) {
+			console.log(coin[0]['Image Path']);
+			// setTexturePath('/FormattedImages/AAVE.png');
+			setTexturePath(coin[0]['Image Path']);
+		} else {
+			setTexturePath('/FormattedImages/AAVE.png');
+		}
+	}, []);
 
 	// console.log(tokenName)
 	const [ref] = useSphere((index) => ({
@@ -39,6 +52,7 @@ export const WrappedSphere = (props: Props) => {
 			<sphereBufferGeometry args={[1, 32, 32]} />
 			<meshLambertMaterial
 				// color={'black'}
+				// map={texturePath}
 				map={texture}
 			/>
 		</instancedMesh>
