@@ -20,7 +20,7 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "typescript": { "ignoreBuildErrors": true },
+
   "include": [
     "next-env.d.ts",
     "**/*.ts",
