@@ -21,7 +21,7 @@ function Plane({ color, ...props }) {
 
 // Creates a crate that catches the spheres
 const Borders = (props) => {
-	const { txs, settxs } = props;
+	const { txs, settxs, releaseFloor } = props;
 	const { viewport } = useThree();
 
 	// useEffect(() => {
@@ -33,7 +33,7 @@ const Borders = (props) => {
 		<>
 			{/* This is the base of the container */}
 			{/* {txs.length > 50 && } */}
-			<Plane position={[0, -viewport.height / 4, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+			{!releaseFloor ? <Plane position={[0, -viewport.height / 4, 0]} rotation={[-Math.PI / 2, 0, 0]} /> : null}
 
 			{/* These two are the sides of the container */}
 			<Plane position={[-viewport.width / 2 - 1, 0, 0]} rotation={[0, Math.PI / 2, 0]} />
@@ -49,7 +49,7 @@ const Borders = (props) => {
 };
 
 export default function BallPit(props) {
-	const { color, title, data } = props;
+	const { color, title, data, releaseFloor, setReleaseFloor } = props;
 	const [txs, settxs] = useState([]);
 	const [txData, setTxData] = useState(null);
 	useEffect(() => {
@@ -67,7 +67,30 @@ export default function BallPit(props) {
 			});
 		}
 		// console.log(txs);
-	}, [data]);
+	}, [data, txs]);
+
+	useEffect(() => {
+		console.log(txs && txs.length);
+		// setReleaseFloor(true);
+		if (txs.length > 100) {
+			setReleaseFloor(true);
+		}
+		if (txs.length < 100) {
+			console.log('not releasing floor');
+			setReleaseFloor(false);
+			// settxs([]);
+		}
+	}, [txs]);
+
+	useEffect(() => {
+		if (releaseFloor) {
+			console.log('releasing floor');
+			setTimeout(() => {
+				settxs([]);
+			}, 2000);
+		}
+	}, [releaseFloor]);
+
 	return (
 		<Canvas
 			shadows
@@ -127,7 +150,7 @@ export default function BallPit(props) {
 			<Physics gravity={[0, -50, 0]} defaultContactMaterial={{ restitution: 0.5 }}>
 				<group position={[0, 0, -10]}>
 					{/* <Mouse /> */}
-					<Borders txs={txs} settxs={settxs} />
+					<Borders txs={txs} settxs={settxs} releaseFloor={releaseFloor} />
 					{/* <InstancedSpheres /> */}
 					{txs.map((c, index) => {
 						// console.log(c)

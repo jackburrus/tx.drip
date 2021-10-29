@@ -9,7 +9,7 @@ interface PaneTypes {
 }
 
 export const Pane: React.FC<PaneTypes> = (props) => {
-	const { color, title, type, data } = props;
+	const { color, title, type, data, releaseFloor, setReleaseFloor } = props;
 	return type == 'Stats' ? (
 		<Flex flex="1" bg={props.color}>
 			<Center flex="1">
@@ -23,7 +23,13 @@ export const Pane: React.FC<PaneTypes> = (props) => {
 					{title}
 				</Text>
 			</Box>
-			<BallPit color={[props.color]} title={title} data={data} />
+			<BallPit
+				color={[props.color]}
+				title={title}
+				data={data}
+				releaseFloor={releaseFloor}
+				setReleaseFloor={setReleaseFloor}
+			/>
 		</Flex>
 	);
 };
