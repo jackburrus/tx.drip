@@ -36,11 +36,11 @@ const Borders = (props) => {
 			<Plane position={[0, -viewport.height / 4, 0]} rotation={[-Math.PI / 2, 0, 0]} />
 
 			{/* These two are the sides of the container */}
-			<Plane position={[-viewport.width / 4 - 1, 0, 0]} rotation={[0, Math.PI / 2, 0]} />
-			<Plane position={[viewport.width / 4 + 1, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
+			<Plane position={[-viewport.width / 2 - 1, 0, 0]} rotation={[0, Math.PI / 2, 0]} />
+			<Plane position={[viewport.width / 2 + 1, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
 
 			{/* This is the top of the container */}
-			{/* <Plane position={[0, 0, 0]} rotation={[0, 0, 0]} /> */}
+			<Plane position={[0, 0, 0]} rotation={[0, 0, 0]} />
 
 			{/* No idea what this one is. But removing it breaks the app */}
 			<Plane position={[0, 0, 12]} rotation={[0, -Math.PI, 0]} />

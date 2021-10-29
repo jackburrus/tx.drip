@@ -13,7 +13,7 @@ export const WrappedSphere = (props: Props) => {
 	const { count, data, setTxData } = props;
 	const { viewport } = useThree();
 	const [hover, setHover] = useState(false);
-	const [texturePath, setTexturePath] = useState('/FormattedImages/AAVE.png');
+	const [texturePath, setTexturePath] = useState('/FormattedImages/GENERIC.png');
 	const texture = useTexture(texturePath);
 
 	useEffect(() => {
@@ -23,7 +23,7 @@ export const WrappedSphere = (props: Props) => {
 			// setTexturePath('/FormattedImages/AAVE.png');
 			setTexturePath(coin[0]['Image Path']);
 		} else {
-			setTexturePath('/FormattedImages/AAVE.png');
+			setTexturePath('/FormattedImages/GENERIC.png');
 		}
 	}, []);
 
@@ -51,7 +51,7 @@ export const WrappedSphere = (props: Props) => {
 		>
 			<sphereBufferGeometry args={[1, 32, 32]} />
 			<meshLambertMaterial
-				// color={'black'}
+				// color={!texturePath ? '#efb914' : null}
 				// map={texturePath}
 				map={texture}
 			/>
