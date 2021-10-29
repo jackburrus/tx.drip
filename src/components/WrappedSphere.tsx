@@ -1,15 +1,18 @@
 import { useSphere } from '@react-three/cannon';
 import { useTexture } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface Props {
 	count: number;
+	data: any;
 }
 
 export const WrappedSphere = (props: Props) => {
+	const { count, data, setTxData } = props;
 	const { viewport } = useThree();
-	// const texture = useTexture('/FormattedImages/AAVE.png');
+	const [hover, setHover] = useState(false);
+	const texture = useTexture('/FormattedImages/AAVE.png');
 
 	// console.log(tokenName)
 	const [ref] = useSphere((index) => ({
@@ -18,11 +21,25 @@ export const WrappedSphere = (props: Props) => {
 		args: [1],
 	}));
 	return (
-		<instancedMesh ref={ref} castShadow receiveShadow args={[null, null, 1]}>
+		<instancedMesh
+			onPointerOver={() => {
+				// console.log(data);
+				setTxData(data);
+				setHover(true);
+			}}
+			onPointerOut={() => {
+				setTxData(null);
+				setHover(false);
+			}}
+			ref={ref}
+			castShadow
+			receiveShadow
+			args={[null, null, 1]}
+		>
 			<sphereBufferGeometry args={[1, 32, 32]} />
 			<meshLambertMaterial
-				color={'black'}
-				// map={texture}
+				// color={'black'}
+				map={texture}
 			/>
 		</instancedMesh>
 	);
