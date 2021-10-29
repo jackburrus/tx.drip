@@ -17,11 +17,11 @@ export const Pane: React.FC<PaneTypes> = (props) => {
 		</Flex>
 	) : (
 		<Flex flex="1" position="relative" bg={color}>
-			{/* <Box display={'flex'} position="absolute" top={10} left={20}>
+			<Box display={'flex'} position="absolute" top={10} left={20}>
 				<Text fontSize={30} color="white">
 					{title}
 				</Text>
-			</Box> */}
+			</Box>
 			{/* <BallPit color={[props.color]} title={title} data={data} /> */}
 		</Flex>
 	);
