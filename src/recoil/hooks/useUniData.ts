@@ -9,13 +9,20 @@ export const useUniData = () => {
 	const [optimism, setOptimism] = useRecoilState(optimismData);
 
 	const optimismState = useRef(optimism);
+	const arbitumState = useRef(arbitum);
+	const mainnetState = useRef(mainnet);
 
 	useEffect(() => {
-		optimismState.current = optimism;
-	}, [optimism]);
+		setArbitum(['hello world!!!']);
+	}, []);
 
-	const [open, setOpen] = useState(false);
-	const toggle = () => console.log('Hello World');
+	// useEffect(() => {
+	// 	arbitumState.current = arbitum;
+	// }, [arbitum]);
+
+	// useEffect(() => {
+	// 	mainnetState.current = mainnet;
+	// }, [mainnet]);
 
 	const updateData = (data, protocol) => {
 		console.log(data);
@@ -34,7 +41,7 @@ export const useUniData = () => {
 		// 	}
 		// });
 	};
-	return [optimismState, updateData];
-	// return { arbitum, mainnet, optimism };
+	// return [optimismState, mainnetState, arbitumState, updateData];
+	return [arbitum, mainnet, optimism];
 	// return [arbitum, mainnet, optimism, updateData] as const;
 };

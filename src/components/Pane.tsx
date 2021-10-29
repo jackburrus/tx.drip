@@ -1,4 +1,5 @@
 import { Box, Center, chakra, Container, Flex, Text } from '@chakra-ui/react';
+import BallPit from './Ballpit';
 
 interface PaneTypes {
 	color: string;
@@ -22,7 +23,7 @@ export const Pane: React.FC<PaneTypes> = (props) => {
 					{title}
 				</Text>
 			</Box>
-			{/* <BallPit color={[props.color]} title={title} data={data} /> */}
+			<BallPit color={[props.color]} title={title} data={data} />
 		</Flex>
 	);
 };
