@@ -6,7 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "typescript": { "ignoreBuildErrors": true },
+
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,6 +20,7 @@
     "jsx": "preserve",
     "incremental": true
   },
+  "typescript": { "ignoreBuildErrors": true },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
