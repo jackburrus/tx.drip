@@ -51,6 +51,7 @@ const Borders = (props) => {
 export default function BallPit(props) {
 	const { color, title, data } = props;
 	const [txs, settxs] = useState([]);
+	const [txData, setTxData] = useState(null);
 	useEffect(() => {
 		if (data) {
 			// const newCount = count.filter((val) => !data.transactions.includes(val))
@@ -84,6 +85,15 @@ export default function BallPit(props) {
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
+				anchorX="left" // default
+				anchorY="bottom-baseline"
+				// default
+			>
+				{txData ? txData.id : null}
+			</Text>
+			<Text
+				scale={[10, 10, 10]}
+				color="white" // default
 				anchorX="center" // default
 				anchorY="top" // default
 			>
@@ -97,6 +107,7 @@ export default function BallPit(props) {
 			>
 				{txs.length} Swaps
 			</Text>
+			)
 			<directionalLight
 				position={[50, 50, 25]}
 				angle={0.3}
@@ -112,16 +123,16 @@ export default function BallPit(props) {
 			<directionalLight position={[-10, -10, -5]} intensity={0.5} />
 			<Physics gravity={[0, -50, 0]} defaultContactMaterial={{ restitution: 0.5 }}>
 				<group position={[0, 0, -10]}>
-					<Mouse />
+					{/* <Mouse /> */}
 					<Borders txs={txs} settxs={settxs} />
 					{/* <InstancedSpheres /> */}
 					{txs.map((c, index) => {
 						// console.log(c)
-						return <WrappedSphere key={index} />;
+						return <WrappedSphere key={index} data={c} setTxData={setTxData} />;
 					})}
 				</group>
 			</Physics>
-			{/* <OrbitControls /> */}
+			<OrbitControls />
 			{/* <Post /> */}
 		</Canvas>
 	);
