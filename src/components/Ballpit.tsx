@@ -85,7 +85,7 @@ export default function BallPit(props) {
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
-				position={[5, 0, 5]}
+				position={[-5, 0, 0]}
 				// anchorX="left" // default
 				// anchorY="bottom-baseline"
 				// default
@@ -95,7 +95,7 @@ export default function BallPit(props) {
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
-				position={[10, 0, 5]}
+				position={[0, 0, 0]}
 				anchorX="center" // default
 				anchorY="top" // default
 			>
@@ -104,7 +104,7 @@ export default function BallPit(props) {
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
-				position={[10, 0, 5]}
+				position={[0, 0, 0]}
 				anchorX="center" // default
 				anchorY="top-baseline" // default
 			>
