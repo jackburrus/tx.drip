@@ -19,9 +19,11 @@ export const WrappedSphere = (props: Props) => {
 	useEffect(() => {
 		const coin = CoinManifest.filter((coin) => coin.symbol === data['token0'].symbol);
 		if (coin.length > 0) {
-			console.log(coin[0]['Image Path']);
+			// console.log(coin[0]['Image Path']);
 			// setTexturePath('/FormattedImages/AAVE.png');
 			setTexturePath(coin[0]['Image Path']);
+		} else if (data['token0'].name === 'Wrapped Ethereum') {
+			setTexturePath('/FormattedImages/ETH.png');
 		} else {
 			setTexturePath('/FormattedImages/GENERIC.png');
 		}

@@ -25,10 +25,9 @@ export const useUniData = () => {
 	// }, [mainnet]);
 
 	const updateData = (data, protocol) => {
-		console.log(data);
+		// console.log(data);
 		// data.transactions.map((tx) => {
 		// 	const data = tx.swaps[0] ? tx.swaps[0] : null;
-
 		// 	if (!protocol.includes(data) && data) {
 		// 		console.log(tx.swaps[0] ? tx.swaps[0].id : null);
 		// 		if (protocol === 'arbitrum') {

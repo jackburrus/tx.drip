@@ -76,7 +76,7 @@ export default function BallPit(props) {
 			setReleaseFloor(true);
 		}
 		if (txs.length < 100) {
-			console.log('not releasing floor');
+			// console.log('not releasing floor');
 			setReleaseFloor(false);
 			// settxs([]);
 		}
@@ -84,7 +84,7 @@ export default function BallPit(props) {
 
 	useEffect(() => {
 		if (releaseFloor) {
-			console.log('releasing floor');
+			// console.log('releasing floor');
 			setTimeout(() => {
 				settxs([]);
 			}, 2000);
