@@ -5,7 +5,11 @@ import { useUniData } from '../src/recoil/hooks/useUniData';
 import { useEffect, useState } from 'react';
 import { arbitumClient, mainnetClient, optimismClient, SWAP_DATA_QUERY } from '../src/lib/apollo';
 import { useQuery } from '@apollo/client';
+
 const Home: NextPage = () => {
+	// Load all transactions into an array for table
+	const [transactions, setTransactions] = useState([]);
+
 	const {
 		loading: mainnetDataLoading,
 		error,
@@ -41,6 +45,10 @@ const Home: NextPage = () => {
 	});
 
 	const [releaseFloor, setReleaseFloor] = useState(false);
+
+	useEffect(() => {
+		console.log(MainnetData);
+	}, [MainnetData]);
 
 	return (
 		<chakra.main display="flex" height="100vh">
