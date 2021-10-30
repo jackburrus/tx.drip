@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/client';
 
 const Home: NextPage = () => {
 	// Load all transactions into an array for table
-	const [transactions, setTransactions] = useState([]);
+	const [allTransactions, setAllTransactions] = useState([]);
 
 	const {
 		loading: mainnetDataLoading,
@@ -47,8 +47,41 @@ const Home: NextPage = () => {
 	const [releaseFloor, setReleaseFloor] = useState(false);
 
 	useEffect(() => {
-		console.log(MainnetData);
-	}, [MainnetData]);
+		if (!mainnetDataLoading) {
+			const { transactions } = MainnetData;
+			transactions.map((tx) => {
+				const data = tx.swaps[0] ? tx.swaps[0] : null;
+
+				if (!allTransactions.includes(data) && data) {
+					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
+					setAllTransactions((oldArray) => [...oldArray, data]);
+				}
+			});
+		}
+		if (!arbitumDataLoading) {
+			const { transactions } = ArbitumData;
+			transactions.map((tx) => {
+				const data = tx.swaps[0] ? tx.swaps[0] : null;
+
+				if (!allTransactions.includes(data) && data) {
+					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
+					setAllTransactions((oldArray) => [...oldArray, data]);
+				}
+			});
+		}
+		if (!optimismDataLoading) {
+			const { transactions } = OptimismData;
+			transactions.map((tx) => {
+				const data = tx.swaps[0] ? tx.swaps[0] : null;
+
+				if (!allTransactions.includes(data) && data) {
+					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
+					setAllTransactions((oldArray) => [...oldArray, data]);
+				}
+			});
+		}
+		console.log(allTransactions);
+	}, [MainnetData, ArbitumData, OptimismData]);
 
 	return (
 		<chakra.main display="flex" height="100vh">
