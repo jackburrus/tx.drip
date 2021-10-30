@@ -50,6 +50,7 @@ export const SWAP_DATA_QUERY = gql`
 			swaps {
 				timestamp
 				id
+				amountUSD
 				token0 {
 					id
 					name

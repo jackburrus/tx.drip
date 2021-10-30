@@ -258,6 +258,14 @@
   dependencies:
     "@chakra-ui/utils" "1.8.3"
 
+"@chakra-ui/icons@^1.0.16":
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-1.0.16.tgz#b8bb0f258c6b883cb050bd840fffc08834db932a"
+  integrity sha512-coxrM4ZYl103p4Y1cXQlDc2cvqRBbNmvccbwUBcB5lod2HKoaZIBhEbxoue5DbrRnNoWIOENnHFxe/ANffu6bw==
+  dependencies:
+    "@chakra-ui/icon" "1.1.12"
+    "@types/react" "^17.0.0"
+
 "@chakra-ui/image@1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@chakra-ui/image/-/image-1.0.21.tgz#ebd57a1198ec3ae6e0cb995db056d3d85269a4ec"
@@ -1068,7 +1076,7 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react@17.0.33":
+"@types/react@17.0.33", "@types/react@^17.0.0":
   version "17.0.33"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.33.tgz#e01ae3de7613dac1094569880bb3792732203ad5"
   integrity sha512-pLWntxXpDPaU+RTAuSGWGSEL2FRTNyRQOjSWDke/rxRg14ncsZvx8AKWMWZqvc1UOaJIAoObdZhAWvRaHFi5rw==
@@ -3628,6 +3636,11 @@ react-style-singleton@^2.1.0:
     get-nonce "^1.0.0"
     invariant "^2.2.4"
     tslib "^1.0.0"
+
+react-table@^7.7.0:
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.7.0.tgz#e2ce14d7fe3a559f7444e9ecfe8231ea8373f912"
+  integrity sha512-jBlj70iBwOTvvImsU9t01LjFjy4sXEtclBovl3mTiqjz23Reu0DKnRza4zlLtOPACx6j2/7MrQIthIK1Wi+LIA==
 
 react-three-fiber@0.0.0-deprecated:
   version "0.0.0-deprecated"

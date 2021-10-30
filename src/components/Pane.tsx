@@ -1,5 +1,6 @@
 import { Box, Center, chakra, Container, Flex, Text } from '@chakra-ui/react';
 import BallPit from './Ballpit';
+import { TxTable } from './TxTable';
 
 interface PaneTypes {
 	color: string;
@@ -12,17 +13,15 @@ export const Pane: React.FC<PaneTypes> = (props) => {
 	const { color, title, type, data, releaseFloor, setReleaseFloor } = props;
 	return type == 'Stats' ? (
 		<Flex flex="1" bg={props.color}>
-			<Center flex="1">
-				<Text color="white">Stats</Text>
-			</Center>
+			<TxTable />
 		</Flex>
 	) : (
 		<Flex flex="1" position="relative" bg={color}>
-			<Box display={'flex'} position="absolute" top={10} left={20}>
+			{/* <Box display={'flex'} position="absolute" top={10} left={20}>
 				<Text fontSize={30} color="white">
 					{title}
 				</Text>
-			</Box>
+			</Box> */}
 			<BallPit
 				color={[props.color]}
 				title={title}
