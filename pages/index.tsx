@@ -80,7 +80,7 @@ const Home: NextPage = () => {
 				}
 			});
 		}
-		console.log(allTransactions);
+		// console.log(allTransactions);
 	}, [MainnetData, ArbitumData, OptimismData]);
 
 	return (

@@ -12,7 +12,7 @@ interface PaneTypes {
 export const Pane: React.FC<PaneTypes> = (props) => {
 	const { color, title, type, data, releaseFloor, setReleaseFloor } = props;
 	return type == 'Stats' ? (
-		<Flex flex="1" bg={props.color}>
+		<Flex overflow={'scroll'} flex="1" bg={props.color}>
 			<TxTable txData={data} />
 		</Flex>
 	) : (

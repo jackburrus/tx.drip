@@ -5,25 +5,10 @@ import React from 'react';
 
 export const TxTable = (props) => {
 	const { txData } = props;
+	console.log(txData);
 	const data = React.useMemo(
 		() => txData,
-		// [
-		// 	{
-		// 		fromUnit: 'inches',
-		// 		toUnit: 'millimetres (mm)',
-		// 		factor: 25.4,
-		// 	},
-		// 	{
-		// 		fromUnit: 'feet',
-		// 		toUnit: 'centimetres (cm)',
-		// 		factor: 30.48,
-		// 	},
-		// 	{
-		// 		fromUnit: 'yards',
-		// 		toUnit: 'metres (m)',
-		// 		factor: 0.91444,
-		// 	},
-		// ],
+
 		[],
 	);
 
@@ -32,6 +17,7 @@ export const TxTable = (props) => {
 			{
 				Header: 'Amount USD',
 				accessor: 'amountUSD',
+				width: 90,
 			},
 			{
 				Header: 'ID',
@@ -74,9 +60,9 @@ export const TxTable = (props) => {
 				{rows.map((row) => {
 					prepareRow(row);
 					return (
-						<Tr {...row.getRowProps()}>
+						<Tr maxWidth="100" {...row.getRowProps()}>
 							{row.cells.map((cell) => (
-								<Td {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
+								<Td maxWidth="100" {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
 									{cell.render('Cell')}
 								</Td>
 							))}
