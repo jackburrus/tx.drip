@@ -98,6 +98,7 @@ const Home: NextPage = () => {
 					type="Stats"
 					// color="#212528"
 					color="white"
+					data={allTransactions}
 				/>
 			</Flex>
 

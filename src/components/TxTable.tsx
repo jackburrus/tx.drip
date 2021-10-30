@@ -3,41 +3,43 @@ import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { useTable, useSortBy } from 'react-table';
 import React from 'react';
 
-export const TxTable = (txData) => {
+export const TxTable = (props) => {
+	const { txData } = props;
 	const data = React.useMemo(
-		() => [
-			{
-				fromUnit: 'inches',
-				toUnit: 'millimetres (mm)',
-				factor: 25.4,
-			},
-			{
-				fromUnit: 'feet',
-				toUnit: 'centimetres (cm)',
-				factor: 30.48,
-			},
-			{
-				fromUnit: 'yards',
-				toUnit: 'metres (m)',
-				factor: 0.91444,
-			},
-		],
+		() => txData,
+		// [
+		// 	{
+		// 		fromUnit: 'inches',
+		// 		toUnit: 'millimetres (mm)',
+		// 		factor: 25.4,
+		// 	},
+		// 	{
+		// 		fromUnit: 'feet',
+		// 		toUnit: 'centimetres (cm)',
+		// 		factor: 30.48,
+		// 	},
+		// 	{
+		// 		fromUnit: 'yards',
+		// 		toUnit: 'metres (m)',
+		// 		factor: 0.91444,
+		// 	},
+		// ],
 		[],
 	);
 
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: 'To convert',
-				accessor: 'fromUnit',
+				Header: 'Amount USD',
+				accessor: 'amountUSD',
 			},
 			{
-				Header: 'Into',
-				accessor: 'toUnit',
+				Header: 'ID',
+				accessor: 'id',
 			},
 			{
-				Header: 'Multiply by',
-				accessor: 'factor',
+				Header: 'Timestamp',
+				accessor: 'timestamp',
 				isNumeric: true,
 			},
 		],
