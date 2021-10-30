@@ -53,7 +53,11 @@ const Home: NextPage = () => {
 					setReleaseFloor={setReleaseFloor}
 				/>
 
-				<Pane type="Stats" color="#212528" />
+				<Pane
+					type="Stats"
+					// color="#212528"
+					color="white"
+				/>
 			</Flex>
 
 			<Flex direction="column" flex={1}>
