@@ -20,6 +20,14 @@ export const TxTable = (props) => {
 				width: 90,
 			},
 			{
+				Header: 'Token From',
+				accessor: 'token0.name',
+			},
+			{
+				Header: 'Token To',
+				accessor: 'token1.name',
+			},
+			{
 				Header: 'ID',
 				accessor: 'id',
 			},
