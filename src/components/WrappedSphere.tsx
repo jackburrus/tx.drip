@@ -9,6 +9,11 @@ interface Props {
 	data: any;
 }
 
+export const scale = (fromRange, toRange) => {
+	const d = (toRange[1] - toRange[0]) / (fromRange[1] - fromRange[0]);
+	return (from) => (from - fromRange[0]) * d + toRange[0];
+};
+
 export const WrappedSphere = (props: Props) => {
 	const { count, data, setTxData } = props;
 	const { viewport } = useThree();
@@ -29,12 +34,19 @@ export const WrappedSphere = (props: Props) => {
 		}
 	}, []);
 
+	useEffect(() => {
+		console.log(scale([0, 1000], [0, 10])(Math.floor(data['amountUSD'])));
+	}, []);
+
 	// console.log(tokenName)
 	const [ref] = useSphere((index) => ({
 		mass: 100,
 		position: [4 - Math.random() * 8, viewport.height, 0, 0],
 		args: [1],
 	}));
+
+	const size = scale([0, 100000], [0, 1])(Math.floor(data['amountUSD']));
+
 	return (
 		<instancedMesh
 			onPointerOver={() => {
@@ -51,7 +63,7 @@ export const WrappedSphere = (props: Props) => {
 			receiveShadow
 			args={[null, null, 1]}
 		>
-			<sphereBufferGeometry args={[1, 32, 32]} />
+			<sphereBufferGeometry args={[size, 32, 32]} />
 			<meshLambertMaterial
 				// color={!texturePath ? '#efb914' : null}
 				// map={texturePath}

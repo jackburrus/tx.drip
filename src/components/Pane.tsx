@@ -13,7 +13,7 @@ export const Pane: React.FC<PaneTypes> = (props) => {
 	const { color, title, type, data, releaseFloor, setReleaseFloor } = props;
 	return type == 'Stats' ? (
 		<Flex overflow={'scroll'} flex="1" bg={props.color}>
-			<TxTable txData={data} />
+			{data && <TxTable txData={data} />}
 		</Flex>
 	) : (
 		<Flex flex="1" position="relative" bg={color}>

@@ -5,7 +5,7 @@ import React from 'react';
 
 export const TxTable = (props) => {
 	const { txData } = props;
-	console.log(txData);
+	// console.log(txData);
 	const data = React.useMemo(
 		() => txData,
 
@@ -27,15 +27,15 @@ export const TxTable = (props) => {
 				Header: 'Token To',
 				accessor: 'token1.name',
 			},
-			{
-				Header: 'ID',
-				accessor: 'id',
-			},
-			{
-				Header: 'Timestamp',
-				accessor: 'timestamp',
-				isNumeric: true,
-			},
+			// {
+			// 	Header: 'ID',
+			// 	accessor: 'id',
+			// },
+			// {
+			// 	Header: 'Timestamp',
+			// 	accessor: 'timestamp',
+			// 	isNumeric: true,
+			// },
 		],
 		[],
 	);
