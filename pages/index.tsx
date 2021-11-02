@@ -87,7 +87,8 @@ const Home: NextPage = () => {
 		<chakra.main display="flex" height="100vh">
 			<Flex direction="column" flex={1}>
 				<Pane
-					color={'#24303B'}
+					color={'#95afc0'}
+					// color={'#24303B'}
 					title="Mainnet"
 					data={MainnetData}
 					releaseFloor={releaseFloor}
@@ -104,14 +105,14 @@ const Home: NextPage = () => {
 
 			<Flex direction="column" flex={1}>
 				<Pane
-					color={'#FB7267'}
+					color={'#ff7979'}
 					title="Optimism"
 					data={OptimismData}
 					releaseFloor={releaseFloor}
 					setReleaseFloor={setReleaseFloor}
 				/>
 				<Pane
-					color={'#4faeec'}
+					color={'#686de0'}
 					title="Arbitum"
 					data={ArbitumData}
 					releaseFloor={releaseFloor}

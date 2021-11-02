@@ -63,7 +63,7 @@ export const WrappedSphere = (props: Props) => {
 			receiveShadow
 			args={[null, null, 1]}
 		>
-			<sphereBufferGeometry args={[size, 32, 32]} />
+			<sphereBufferGeometry args={[1, 32, 32]} />
 			<meshLambertMaterial
 				// color={!texturePath ? '#efb914' : null}
 				// map={texturePath}

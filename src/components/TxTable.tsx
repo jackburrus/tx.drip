@@ -5,11 +5,23 @@ import React from 'react';
 
 export const TxTable = (props) => {
 	const { txData } = props;
-	// console.log(txData);
+	console.log(txData);
+	// const data = React.useMemo(
+	// 	() => [
+	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
+	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
+	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
+	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
+	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
+	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
+	// 	],
+
+	// 	[],
+	// );
 	const data = React.useMemo(
 		() => txData,
 
-		[],
+		[txData],
 	);
 
 	const columns = React.useMemo(
@@ -42,20 +54,26 @@ export const TxTable = (props) => {
 
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, useSortBy);
 
-	return (
+	return txData ? (
 		<Table {...getTableProps()}>
-			<Thead>
+			<Thead bg={'#202839'}>
 				{headerGroups.map((headerGroup, index) => (
 					<Tr key={index} {...headerGroup.getHeaderGroupProps()}>
 						{headerGroup.headers.map((column, index) => (
-							<Th key={index} {...column.getHeaderProps(column.getSortByToggleProps())} isNumeric={column.isNumeric}>
+							<Th
+								fontFamily={'Open Sans'}
+								color={'#697480'}
+								key={index}
+								{...column.getHeaderProps(column.getSortByToggleProps())}
+								isNumeric={column.isNumeric}
+							>
 								{column.render('Header')}
 								<chakra.span pl="4">
 									{column.isSorted ? (
 										column.isSortedDesc ? (
-											<TriangleDownIcon aria-label="sorted descending" />
+											<TriangleDownIcon color={'#697480'} aria-label="sorted descending" />
 										) : (
-											<TriangleUpIcon aria-label="sorted ascending" />
+											<TriangleUpIcon color={'#697480'} aria-label="sorted ascending" />
 										)
 									) : null}
 								</chakra.span>
@@ -64,13 +82,13 @@ export const TxTable = (props) => {
 					</Tr>
 				))}
 			</Thead>
-			<Tbody {...getTableBodyProps()}>
+			<Tbody bg={'#111727'} {...getTableBodyProps()}>
 				{rows.map((row) => {
 					prepareRow(row);
 					return (
 						<Tr maxWidth="100" {...row.getRowProps()}>
 							{row.cells.map((cell) => (
-								<Td maxWidth="100" {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
+								<Td color={'#697480'} maxWidth="100" {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
 									{cell.render('Cell')}
 								</Td>
 							))}
@@ -79,5 +97,5 @@ export const TxTable = (props) => {
 				})}
 			</Tbody>
 		</Table>
-	);
+	) : null;
 };
