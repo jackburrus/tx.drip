@@ -61,7 +61,8 @@ export const TxTable = (props) => {
 					<Tr key={index} {...headerGroup.getHeaderGroupProps()}>
 						{headerGroup.headers.map((column, index) => (
 							<Th
-								fontFamily={'Open Sans'}
+								borderBottomColor={'#202737'}
+								fontFamily={'Nunito'}
 								color={'#697480'}
 								key={index}
 								{...column.getHeaderProps(column.getSortByToggleProps())}
@@ -88,7 +89,14 @@ export const TxTable = (props) => {
 					return (
 						<Tr maxWidth="100" {...row.getRowProps()}>
 							{row.cells.map((cell) => (
-								<Td color={'#697480'} maxWidth="100" {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
+								<Td
+									borderBottomColor={'#202737'}
+									fontFamily={'Nunito'}
+									color={'#697480'}
+									maxWidth="100"
+									{...cell.getCellProps()}
+									isNumeric={cell.column.isNumeric}
+								>
 									{cell.render('Cell')}
 								</Td>
 							))}

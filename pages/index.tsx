@@ -113,7 +113,7 @@ const Home: NextPage = () => {
 				/>
 				<Pane
 					color={'#686de0'}
-					title="Arbitum"
+					title="Arbitrum"
 					data={ArbitumData}
 					releaseFloor={releaseFloor}
 					setReleaseFloor={setReleaseFloor}

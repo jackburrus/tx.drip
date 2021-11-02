@@ -4,7 +4,7 @@ import { TxTable } from './TxTable';
 
 interface PaneTypes {
 	color: string;
-	title: 'Mainnet' | 'Arbitum' | 'Optimism';
+	title: 'Mainnet' | 'Arbitrum' | 'Optimism';
 	type: 'Ball' | 'Stats';
 	data: any;
 }
