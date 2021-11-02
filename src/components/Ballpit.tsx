@@ -93,6 +93,7 @@ export default function BallPit(props) {
 
 	return (
 		<Canvas
+			frameloop="demand"
 			shadows
 			gl={{
 				stencil: false,

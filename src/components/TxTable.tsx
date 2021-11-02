@@ -1,10 +1,25 @@
-import { Table, Thead, Tbody, Tr, Th, Td, chakra } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, chakra, Box, Flex } from '@chakra-ui/react';
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { useTable, useSortBy } from 'react-table';
-import React from 'react';
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+// create function that converts a timestamp to date
+const convertTimestamp = (timestamp) => {
+	const date = new Date(timestamp * 1000);
+	const hours = date.getHours();
+	const minutes = '0' + date.getMinutes();
+	const seconds = '0' + date.getSeconds();
+	const ampm = hours >= 12 ? 'pm' : 'am';
+	const formattedTime = hours + ':' + minutes.substr(-2) + ' ' + ampm;
+	return formattedTime;
+};
+
+function numberWithCommas(x) {
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 export const TxTable = (props) => {
-	const { txData } = props;
+	const { txData, setAllTransactions } = props;
 	console.log(txData);
 	// const data = React.useMemo(
 	// 	() => [
@@ -19,17 +34,56 @@ export const TxTable = (props) => {
 	// 	[],
 	// );
 	const data = React.useMemo(
-		() => txData,
+		() => txData.slice(0, 20),
 
 		[txData],
 	);
 
+	useEffect(() => {
+		if (data.length > 200) {
+			setAllTransactions(data.slice(0, 100));
+		}
+	}, [txData]);
+
+	const getNetworkImage = (network) => {
+		switch (network) {
+			case 'Mainnet':
+				return '/NetworkIcons/eth.png';
+
+			case 'Arbitrum':
+				return '/NetworkIcons/arbitrum.png';
+
+			case 'Optimism':
+				return '/NetworkIcons/optimism.png';
+
+			default:
+				return '/NetworkIcons/eth.png';
+		}
+	};
+
 	const columns = React.useMemo(
 		() => [
+			{
+				Header: 'Network',
+				accessor: 'Network',
+				Cell: (row) => (
+					<Flex direction={'row'}>
+						<Image src={getNetworkImage(row.value)} width={20} height={20} />
+
+						{row.value}
+					</Flex>
+				),
+			},
+			{
+				Header: 'Time',
+				accessor: 'timestamp',
+				Cell: (row) => convertTimestamp(row.value),
+			},
 			{
 				Header: 'Amount USD',
 				accessor: 'amountUSD',
 				width: 90,
+				Cell: (row) => '$' + numberWithCommas(parseFloat(row.value).toFixed(2)),
 			},
 			{
 				Header: 'Token From',

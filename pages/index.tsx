@@ -47,28 +47,6 @@ const Home: NextPage = () => {
 	const [releaseFloor, setReleaseFloor] = useState(false);
 
 	useEffect(() => {
-		if (!mainnetDataLoading) {
-			const { transactions } = MainnetData;
-			transactions.map((tx) => {
-				const data = tx.swaps[0] ? tx.swaps[0] : null;
-
-				if (!allTransactions.includes(data) && data) {
-					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
-					setAllTransactions((oldArray) => [...oldArray, { Network: 'Mainnet', ...data }]);
-				}
-			});
-		}
-		if (!arbitumDataLoading) {
-			const { transactions } = ArbitumData;
-			transactions.map((tx) => {
-				const data = tx.swaps[0] ? tx.swaps[0] : null;
-
-				if (!allTransactions.includes(data) && data) {
-					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
-					setAllTransactions((oldArray) => [...oldArray, { Network: 'Arbitrum', ...data }]);
-				}
-			});
-		}
 		if (!optimismDataLoading) {
 			const { transactions } = OptimismData;
 			transactions.map((tx) => {
@@ -76,12 +54,46 @@ const Home: NextPage = () => {
 
 				if (!allTransactions.includes(data) && data) {
 					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
-					setAllTransactions((oldArray) => [...oldArray, { Network: 'Optimism', ...data }]);
+					setAllTransactions((oldArray) => [{ Network: 'Optimism', ...data }, ...oldArray]);
 				}
 			});
 		}
 		// console.log(allTransactions);
-	}, [MainnetData, ArbitumData, OptimismData]);
+	}, [OptimismData]);
+
+	useEffect(() => {
+		if (!arbitumDataLoading) {
+			const { transactions } = ArbitumData;
+			transactions.map((tx) => {
+				const data = tx.swaps[0] ? tx.swaps[0] : null;
+
+				if (!allTransactions.includes(data) && data) {
+					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
+					setAllTransactions((oldArray) => [{ Network: 'Arbitrum', ...data }, ...oldArray]);
+				}
+			});
+		}
+	}, [ArbitumData]);
+
+	useEffect(() => {
+		if (!mainnetDataLoading && MainnetData) {
+			const { transactions } = MainnetData;
+			transactions.map((tx) => {
+				const data = tx.swaps[0] ? tx.swaps[0] : null;
+
+				if (!allTransactions.includes(data) && data) {
+					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
+					setAllTransactions((oldArray) => [{ Network: 'Mainnet', ...data }, ...oldArray]);
+				}
+			});
+		}
+	}, [MainnetData]);
+
+	useEffect(() => {
+		if (releaseFloor) {
+			setReleaseFloor(false);
+		}
+	}, []);
 
 	return (
 		<chakra.main display="flex" height="100vh">
@@ -100,6 +112,7 @@ const Home: NextPage = () => {
 					// color="#212528"
 					color="white"
 					data={allTransactions}
+					setAllTransactions={setAllTransactions}
 				/>
 			</Flex>
 

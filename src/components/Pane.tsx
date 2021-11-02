@@ -10,10 +10,10 @@ interface PaneTypes {
 }
 
 export const Pane: React.FC<PaneTypes> = (props) => {
-	const { color, title, type, data, releaseFloor, setReleaseFloor } = props;
+	const { color, title, type, data, releaseFloor, setReleaseFloor, setAllTransactions } = props;
 	return type == 'Stats' ? (
 		<Flex overflow={'scroll'} flex="1" bg={props.color}>
-			{data && <TxTable txData={data} />}
+			{data && <TxTable txData={data} setAllTransactions={setAllTransactions} />}
 		</Flex>
 	) : (
 		<Flex flex="1" position="relative" bg={color}>
