@@ -54,7 +54,7 @@ const Home: NextPage = () => {
 
 				if (!allTransactions.includes(data) && data) {
 					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
-					setAllTransactions((oldArray) => [...oldArray, data]);
+					setAllTransactions((oldArray) => [...oldArray, { Network: 'Mainnet', ...data }]);
 				}
 			});
 		}
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
 
 				if (!allTransactions.includes(data) && data) {
 					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
-					setAllTransactions((oldArray) => [...oldArray, data]);
+					setAllTransactions((oldArray) => [...oldArray, { Network: 'Arbitrum', ...data }]);
 				}
 			});
 		}
@@ -76,7 +76,7 @@ const Home: NextPage = () => {
 
 				if (!allTransactions.includes(data) && data) {
 					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
-					setAllTransactions((oldArray) => [...oldArray, data]);
+					setAllTransactions((oldArray) => [...oldArray, { Network: 'Optimism', ...data }]);
 				}
 			});
 		}
