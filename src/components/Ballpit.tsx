@@ -3,8 +3,16 @@ import { Physics, usePlane, useSphere } from '@react-three/cannon';
 import { OrbitControls, Text } from '@react-three/drei';
 import { WrappedSphere } from './WrappedSphere';
 import { useEffect, useState } from 'react';
+import { css } from '@emotion/react';
+import ClipLoader from 'react-spinners/ClipLoader';
+import Loader from './LoadingAnimation';
 
-// A physical sphere tied to mouse coordinates without visual representation
+const override = css`
+	display: block;
+	margin: 0 auto;
+	border-color: red;
+`;
+
 function Mouse() {
 	const { viewport } = useThree();
 	const [, api] = useSphere(() => ({ type: 'Kinematic', args: [6] }));
@@ -52,6 +60,8 @@ export default function BallPit(props) {
 	const { color, title, data, releaseFloor, setReleaseFloor } = props;
 	const [txs, settxs] = useState([]);
 	const [txData, setTxData] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [loadingColor, setColor] = useState('#ffffff');
 	useEffect(() => {
 		if (data) {
 			// const newCount = count.filter((val) => !data.transactions.includes(val))
@@ -106,6 +116,7 @@ export default function BallPit(props) {
 			<fog attach="fog" args={['red', 25, 40]} />
 			<color attach="background" args={color} />
 			<ambientLight intensity={2} />
+			<Loader />
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
