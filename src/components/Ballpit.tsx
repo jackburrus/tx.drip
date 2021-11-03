@@ -133,6 +133,7 @@ export default function BallPit(props) {
 				position={[0, 0, 0]}
 				anchorX="center" // default
 				anchorY="top" // default
+				style={{ fontFamily: 'Nunito' }}
 			>
 				{title}
 			</Text>

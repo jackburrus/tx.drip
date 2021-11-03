@@ -20,6 +20,7 @@
     "@react-three/drei": "^7.18.0",
     "@react-three/fiber": "^7.0.17",
     "cryptocurrency-icons": "^0.18.0",
+    "essential-eth": "^0.4.5",
     "eth-components": "^1.0.2",
     "eth-hooks": "^2.3.14",
     "ethers": "^5.5.1",

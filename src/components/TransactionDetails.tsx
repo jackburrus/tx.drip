@@ -7,6 +7,7 @@ import { ArrowForwardIcon } from '@chakra-ui/icons';
 // import { Address, Balance } from 'eth-components/ant';
 import Address from './Address';
 import { ethers } from 'ethers';
+import { weiToEther } from 'essential-eth';
 interface Props {}
 
 const mainnetAlchemy = new ethers.providers.StaticJsonRpcProvider(process.env.ALCHEMY_MAINNET);
@@ -108,8 +109,10 @@ export const TransactionDetails = (props: Props) => {
 						justify="center"
 						align={'center'}
 					>
-						<Text color={'#686B7A'}>Amount USD</Text>
-						<Text fontSize={30} color={'#FEFEFF'}>
+						<Text fontFamily={'Nunito'} color={'#686B7A'}>
+							Amount USD
+						</Text>
+						<Text fontFamily={'Nunito'} fontSize={30} color={'#FEFEFF'}>
 							{formatter.format(swapDetails.amountUSD)}
 						</Text>
 					</Flex>
@@ -127,13 +130,15 @@ export const TransactionDetails = (props: Props) => {
 						justify="center"
 						align={'center'}
 					>
-						<Text color={'#686B7A'}>Sender</Text>
+						<Text fontFamily={'Nunito'} color={'#686B7A'}>
+							Sender
+						</Text>
 						{/* <Text fontSize={30} color={'#FEFEFF'}>
 							{swapDetails.sender}
 						</Text> */}
 						{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
 						{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
-						<Text fontSize={30} color={'white'}>
+						<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
 							{/* <RiExternalLinkFill /> */}
 							{swapDetails.sender.substr(0, 6)}
 						</Text>
@@ -152,13 +157,15 @@ export const TransactionDetails = (props: Props) => {
 						justify="center"
 						align={'center'}
 					>
-						<Text color={'#686B7A'}>Receiver</Text>
+						<Text fontFamily={'Nunito'} color={'#686B7A'}>
+							Receiver
+						</Text>
 						{/* <Text fontSize={30} color={'#FEFEFF'}>
 							{swapDetails.sender}
 						</Text> */}
 						{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
 						{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
-						<Text fontSize={30} color={'white'}>
+						<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
 							{/* <RiExternalLinkFill /> */}
 							{swapDetails.recipient.substr(0, 6)}
 						</Text>
@@ -196,9 +203,8 @@ export const TransactionDetails = (props: Props) => {
 						{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
 						<Text fontSize={30} color={'white'}>
 							{/* <RiExternalLinkFill /> */}
-							{parseFloat(ethers.utils.formatUnits(swapDetails.transaction.gasPrice, 'gwei')).toFixed(2)}
-							{/* {parseFloat(ethers.utils.formatUnits(swapDetails.transaction.gasUsed, 'gwei'))} */}
-							{/* {swapDetails.transaction.gasUsed} */}
+							{/* {parseFloat(ethers.utils.formatUnits(swapDetails.transaction.gasPrice, 'gwei'))} Gwei */}
+							{ethers.utils.formatUnits(swapDetails.transaction.gasPrice, 'gwei')} gwei
 						</Text>
 					</Flex>
 				</motion.div>
