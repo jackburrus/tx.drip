@@ -126,7 +126,8 @@ const Home: NextPage = () => {
 
 			<Flex direction="column" flex={1}>
 				<Pane
-					color={'#ff7979'}
+					// color={'#ff7979'}
+					color={'#ea8685'}
 					title="Optimism"
 					data={OptimismData}
 					releaseFloor={releaseFloor}
@@ -135,7 +136,8 @@ const Home: NextPage = () => {
 					setSwapDetails={setSwapDetails}
 				/>
 				<Pane
-					color={'#686de0'}
+					// color={'#686de0'}
+					color={'#596275'}
 					title="Arbitrum"
 					data={ArbitumData}
 					releaseFloor={releaseFloor}

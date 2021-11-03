@@ -22,13 +22,33 @@ var formatter = new Intl.NumberFormat('en-US', {
 });
 
 const findIcon = (code: string): string => {
-	// console.log(code)
+	console.log(code);
 	try {
-		return require(`../../node_modules/cryptocurrency-icons/svg/color/${code.toLowerCase()}.svg`);
+		if (code === 'WETH') {
+			return require(`../../node_modules/cryptocurrency-icons/svg/color/ETH.svg`);
+		} else {
+			return require(`../../node_modules/cryptocurrency-icons/svg/color/${code.toLowerCase()}.svg`);
+		}
 	} catch (err) {
+		console.log(err);
 		// return require('../../../node_modules/cryptocurrency-icons/svg/color/generic.svg')
 		return require('../../node_modules/cryptocurrency-icons/svg/color/generic.svg');
 	}
+};
+
+const container = {
+	hidden: { opacity: 0 },
+	show: {
+		opacity: 1,
+		transition: {
+			delayChildren: 0.5,
+		},
+	},
+};
+
+const item = {
+	hidden: { opacity: 0 },
+	show: { opacity: 1 },
 };
 
 export const TransactionDetails = (props: Props) => {
@@ -51,11 +71,7 @@ export const TransactionDetails = (props: Props) => {
 				align={'flex-start'}
 				justify="space-evenly"
 			>
-				<motion.div
-					style={{ position: 'relative' }}
-					animate={{ y: 5, opacity: 1 }}
-					transition={{ ease: 'easeIn', delay: 0.1 }}
-				>
+				<motion.div variants={container} initial="hidden" animate="show">
 					<Flex direction={'column'} justify="space-around" align={'center'} height={150}>
 						<Image src={findIcon(swapDetails['token0'].symbol)} width={100} height={100} alt="crypto-icon" />
 						<Text fontSize={24} fontFamily={'Nunito'} color={'#fff'}>
@@ -64,20 +80,12 @@ export const TransactionDetails = (props: Props) => {
 					</Flex>
 				</motion.div>
 				<Flex height={150} align={'center'}>
-					<motion.div
-						style={{ position: 'relative' }}
-						animate={{ y: 5, opacity: 1 }}
-						transition={{ ease: 'easeIn', delay: 0.13 }}
-					>
+					<motion.div variants={container} initial="hidden" animate="show">
 						<ArrowForwardIcon color={'white'} width={50} height={50} />
 					</motion.div>
 				</Flex>
 
-				<motion.div
-					style={{ position: 'relative' }}
-					animate={{ y: 5, opacity: 1 }}
-					transition={{ ease: 'easeIn', delay: 0.15 }}
-				>
+				<motion.div variants={container} initial="hidden" animate="show">
 					<Flex direction={'column'} justify="space-around" align={'center'} height={150}>
 						<Image src={findIcon(swapDetails['token1'].symbol)} width={100} height={100} alt="crypto-icon" />
 						<Text fontSize={24} fontFamily={'Nunito'} color={'#fff'}>
@@ -96,81 +104,65 @@ export const TransactionDetails = (props: Props) => {
 				align={'flex-start'}
 				justify="space-evenly"
 			>
-				<motion.div
-					style={{ position: 'relative' }}
-					animate={{ y: 5, opacity: 1 }}
-					transition={{ ease: 'easeIn', delay: 0.17 }}
+				<Flex
+					flex={1}
+					//  border={'1px solid blue'}
+					height={75}
+					direction={'column'}
+					justify="center"
+					align={'center'}
 				>
-					<Flex
-						flex={1}
-						//  border={'1px solid blue'}
-						height={75}
-						direction={'column'}
-						justify="center"
-						align={'center'}
-					>
-						<Text fontFamily={'Nunito'} color={'#686B7A'}>
-							Amount USD
-						</Text>
-						<Text fontFamily={'Nunito'} fontSize={30} color={'#FEFEFF'}>
-							{formatter.format(swapDetails.amountUSD)}
-						</Text>
-					</Flex>
-				</motion.div>
-				<motion.div
-					style={{ position: 'relative' }}
-					animate={{ y: 5, opacity: 1 }}
-					transition={{ ease: 'easeIn', delay: 0.17 }}
+					<Text fontFamily={'Nunito'} color={'#686B7A'}>
+						Amount USD
+					</Text>
+					<Text fontFamily={'Nunito'} fontSize={30} color={'#FEFEFF'}>
+						{formatter.format(swapDetails.amountUSD)}
+					</Text>
+				</Flex>
+
+				<Flex
+					flex={1}
+					//  border={'1px solid blue'}
+					height={75}
+					direction={'column'}
+					justify="center"
+					align={'center'}
 				>
-					<Flex
-						flex={1}
-						//  border={'1px solid blue'}
-						height={75}
-						direction={'column'}
-						justify="center"
-						align={'center'}
-					>
-						<Text fontFamily={'Nunito'} color={'#686B7A'}>
-							Sender
-						</Text>
-						{/* <Text fontSize={30} color={'#FEFEFF'}>
+					<Text fontFamily={'Nunito'} color={'#686B7A'}>
+						Sender
+					</Text>
+					{/* <Text fontSize={30} color={'#FEFEFF'}>
 							{swapDetails.sender}
 						</Text> */}
-						{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
-						{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
-						<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
-							{/* <RiExternalLinkFill /> */}
-							{swapDetails.sender.substr(0, 6)}
-						</Text>
-					</Flex>
-				</motion.div>
-				<motion.div
-					style={{ position: 'relative' }}
-					animate={{ y: 5, opacity: 1 }}
-					transition={{ ease: 'easeIn', delay: 0.17 }}
+					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
+					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
+					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
+						{/* <RiExternalLinkFill /> */}
+						{swapDetails.sender.substr(0, 6)}
+					</Text>
+				</Flex>
+
+				<Flex
+					flex={1}
+					//  border={'1px solid blue'}
+					height={75}
+					direction={'column'}
+					justify="center"
+					align={'center'}
 				>
-					<Flex
-						flex={1}
-						//  border={'1px solid blue'}
-						height={75}
-						direction={'column'}
-						justify="center"
-						align={'center'}
-					>
-						<Text fontFamily={'Nunito'} color={'#686B7A'}>
-							Receiver
-						</Text>
-						{/* <Text fontSize={30} color={'#FEFEFF'}>
+					<Text fontFamily={'Nunito'} color={'#686B7A'}>
+						Receiver
+					</Text>
+					{/* <Text fontSize={30} color={'#FEFEFF'}>
 							{swapDetails.sender}
 						</Text> */}
-						{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
-						{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
-						<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
-							{/* <RiExternalLinkFill /> */}
-							{swapDetails.recipient.substr(0, 6)}
-						</Text>
-					</Flex>
-				</motion.div>
+					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
+					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
+					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
+						{/* <RiExternalLinkFill /> */}
+						{swapDetails.recipient.substr(0, 6)}
+					</Text>
+				</Flex>
 			</Flex>
 			<Flex
 				// border={'1px solid red'}
@@ -182,32 +174,26 @@ export const TransactionDetails = (props: Props) => {
 				align={'flex-start'}
 				justify="space-evenly"
 			>
-				<motion.div
-					style={{ position: 'relative' }}
-					animate={{ y: 5, opacity: 1 }}
-					transition={{ ease: 'easeIn', delay: 0.17 }}
+				<Flex
+					flex={1}
+					//  border={'1px solid blue'}
+					height={75}
+					direction={'column'}
+					justify="center"
+					align={'center'}
 				>
-					<Flex
-						flex={1}
-						//  border={'1px solid blue'}
-						height={75}
-						direction={'column'}
-						justify="center"
-						align={'center'}
-					>
-						<Text color={'#686B7A'}>Gas Price</Text>
-						{/* <Text fontSize={30} color={'#FEFEFF'}>
+					<Text color={'#686B7A'}>Gas Price</Text>
+					{/* <Text fontSize={30} color={'#FEFEFF'}>
 							{swapDetails.sender}
 						</Text> */}
-						{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
-						{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
-						<Text fontSize={30} color={'white'}>
-							{/* <RiExternalLinkFill /> */}
-							{/* {parseFloat(ethers.utils.formatUnits(swapDetails.transaction.gasPrice, 'gwei'))} Gwei */}
-							{ethers.utils.formatUnits(swapDetails.transaction.gasPrice, 'gwei')} gwei
-						</Text>
-					</Flex>
-				</motion.div>
+					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
+					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
+					<Text fontSize={30} color={'white'}>
+						{/* <RiExternalLinkFill /> */}
+						{/* {parseFloat(ethers.utils.formatUnits(swapDetails.transaction.gasPrice, 'gwei'))} Gwei */}
+						{parseFloat(ethers.utils.formatUnits(swapDetails.transaction.gasPrice, 'gwei')).toFixed(2)} gwei
+					</Text>
+				</Flex>
 			</Flex>
 		</Flex>
 	);
