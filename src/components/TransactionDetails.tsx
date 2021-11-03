@@ -6,6 +6,15 @@ import Image from 'next/image';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 interface Props {}
 
+var formatter = new Intl.NumberFormat('en-US', {
+	style: 'currency',
+	currency: 'USD',
+
+	// These options are needed to round to whole numbers if that's what you want.
+	//minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+	//maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+});
+
 const findIcon = (code: string): string => {
 	// console.log(code)
 	try {
@@ -27,9 +36,9 @@ export const TransactionDetails = (props: Props) => {
 	}, [swapDetails]);
 
 	return (
-		<Flex display={'flex'} flex={1} bg={'#111727'}>
+		<Flex display={'flex'} direction={'column'} flex={1} bg={'#111727'}>
 			<Flex
-				// border={'1px solid red'}
+				border={'1px solid red'}
 				display={'flex'}
 				width={'100%'}
 				direction="row"
@@ -68,6 +77,35 @@ export const TransactionDetails = (props: Props) => {
 						<Image src={findIcon(swapDetails['token1'].symbol)} width={100} height={100} alt="crypto-icon" />
 						<Text fontSize={24} fontFamily={'Nunito'} color={'#fff'}>
 							{swapDetails['token1'].name}
+						</Text>
+					</Flex>
+				</motion.div>
+			</Flex>
+			<Flex
+				border={'1px solid red'}
+				display={'flex'}
+				flex={2}
+				width={'100%'}
+				direction="row"
+				align={'flex-start'}
+				justify="space-evenly"
+			>
+				<motion.div
+					style={{ position: 'relative' }}
+					animate={{ y: 5, opacity: 1 }}
+					transition={{ ease: 'easeIn', delay: 0.17 }}
+				>
+					<Flex
+						flex={1}
+						//  border={'1px solid blue'}
+						height={75}
+						direction={'column'}
+						justify="center"
+						align={'center'}
+					>
+						<Text color={'#686B7A'}>Amount USD</Text>
+						<Text fontSize={30} color={'#FEFEFF'}>
+							{formatter.format(swapDetails.amountUSD)}
 						</Text>
 					</Flex>
 				</motion.div>
