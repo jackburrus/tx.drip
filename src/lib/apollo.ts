@@ -51,6 +51,8 @@ export const SWAP_DATA_QUERY = gql`
 				timestamp
 				id
 				amountUSD
+				sender
+				recipient
 				token0 {
 					id
 					name

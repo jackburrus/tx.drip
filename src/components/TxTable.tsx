@@ -40,8 +40,8 @@ export const TxTable = (props) => {
 	);
 
 	useEffect(() => {
-		if (data.length > 200) {
-			setAllTransactions(data.slice(0, 100));
+		if (data.length > 50) {
+			setAllTransactions(data.slice(0, 50));
 		}
 	}, [txData]);
 
@@ -68,7 +68,9 @@ export const TxTable = (props) => {
 				accessor: 'Network',
 				Cell: (row) => (
 					<Flex direction={'row'}>
-						<Image src={getNetworkImage(row.value)} width={20} height={20} />
+						<Box pr={2}>
+							<Image src={getNetworkImage(row.value)} width={20} height={20} />
+						</Box>
 
 						{row.value}
 					</Flex>
@@ -84,6 +86,12 @@ export const TxTable = (props) => {
 				accessor: 'amountUSD',
 				width: 90,
 				Cell: (row) => '$' + numberWithCommas(parseFloat(row.value).toFixed(2)),
+			},
+			{
+				Header: 'Account',
+				accessor: 'sender',
+				// width: 90,
+				// Cell: (row) => '$' + numberWithCommas(parseFloat(row.value).toFixed(2)),
 			},
 			{
 				Header: 'Token From',

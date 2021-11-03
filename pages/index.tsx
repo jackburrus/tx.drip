@@ -5,6 +5,7 @@ import { useUniData } from '../src/recoil/hooks/useUniData';
 import { useEffect, useState } from 'react';
 import { arbitumClient, mainnetClient, optimismClient, SWAP_DATA_QUERY } from '../src/lib/apollo';
 import { useQuery } from '@apollo/client';
+import { TransactionDetails } from '../src/components/TransactionDetails';
 
 const Home: NextPage = () => {
 	// Load all transactions into an array for table
@@ -45,6 +46,8 @@ const Home: NextPage = () => {
 	});
 
 	const [releaseFloor, setReleaseFloor] = useState(false);
+	const [swapHovered, setSwapHovered] = useState(false);
+	const [swapDetails, setSwapDetails] = useState(null);
 
 	useEffect(() => {
 		if (!optimismDataLoading) {
@@ -105,15 +108,20 @@ const Home: NextPage = () => {
 					data={MainnetData}
 					releaseFloor={releaseFloor}
 					setReleaseFloor={setReleaseFloor}
+					setSwapHovered={setSwapHovered}
+					setSwapDetails={setSwapDetails}
 				/>
-
-				<Pane
-					type="Stats"
-					// color="#212528"
-					color="white"
-					data={allTransactions}
-					setAllTransactions={setAllTransactions}
-				/>
+				{swapHovered && swapDetails ? (
+					<TransactionDetails swapDetails={swapDetails} />
+				) : (
+					<Pane
+						type="Stats"
+						// color="#212528"
+						color="white"
+						data={allTransactions}
+						setAllTransactions={setAllTransactions}
+					/>
+				)}
 			</Flex>
 
 			<Flex direction="column" flex={1}>
@@ -123,6 +131,8 @@ const Home: NextPage = () => {
 					data={OptimismData}
 					releaseFloor={releaseFloor}
 					setReleaseFloor={setReleaseFloor}
+					setSwapHovered={setSwapHovered}
+					setSwapDetails={setSwapDetails}
 				/>
 				<Pane
 					color={'#686de0'}
@@ -130,6 +140,8 @@ const Home: NextPage = () => {
 					data={ArbitumData}
 					releaseFloor={releaseFloor}
 					setReleaseFloor={setReleaseFloor}
+					setSwapHovered={setSwapHovered}
+					setSwapDetails={setSwapDetails}
 				/>
 			</Flex>
 		</chakra.main>

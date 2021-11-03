@@ -57,7 +57,7 @@ const Borders = (props) => {
 };
 
 export default function BallPit(props) {
-	const { color, title, data, releaseFloor, setReleaseFloor } = props;
+	const { color, title, data, releaseFloor, setReleaseFloor, setSwapDetails, setSwapHovered } = props;
 	const [txs, settxs] = useState([]);
 	const [txData, setTxData] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -116,8 +116,8 @@ export default function BallPit(props) {
 			<fog attach="fog" args={['red', 25, 40]} />
 			<color attach="background" args={color} />
 			<ambientLight intensity={2} />
-			<Loader />
-			<Text
+			{/* <Loader /> */}
+			{/* <Text
 				scale={[10, 10, 10]}
 				color="white" // default
 				position={[-5, 0, 0]}
@@ -126,7 +126,7 @@ export default function BallPit(props) {
 				// default
 			>
 				{txData ? txData['token0'].name : null}
-			</Text>
+			</Text> */}
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
@@ -166,7 +166,15 @@ export default function BallPit(props) {
 					{/* <InstancedSpheres /> */}
 					{txs.map((c, index) => {
 						// console.log(c)
-						return <WrappedSphere key={index} data={c} setTxData={setTxData} />;
+						return (
+							<WrappedSphere
+								key={index}
+								data={c}
+								setTxData={setTxData}
+								setSwapDetails={setSwapDetails}
+								setSwapHovered={setSwapHovered}
+							/>
+						);
 					})}
 				</group>
 			</Physics>

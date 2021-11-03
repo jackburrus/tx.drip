@@ -15,7 +15,7 @@ export const scale = (fromRange, toRange) => {
 };
 
 export const WrappedSphere = (props: Props) => {
-	const { count, data, setTxData } = props;
+	const { count, data, setTxData, setSwapHovered, setSwapDetails } = props;
 	const { viewport } = useThree();
 	const [hover, setHover] = useState(false);
 	const [texturePath, setTexturePath] = useState('/FormattedImages/GENERIC.png');
@@ -53,10 +53,14 @@ export const WrappedSphere = (props: Props) => {
 				// console.log(data);
 				setTxData(data);
 				setHover(true);
+				setSwapHovered(true);
+				setSwapDetails(data);
 			}}
 			onPointerOut={() => {
 				setTxData(null);
 				setHover(false);
+				setSwapHovered(false);
+				setSwapDetails(null);
 			}}
 			ref={ref}
 			castShadow
