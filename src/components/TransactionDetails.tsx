@@ -35,14 +35,14 @@ export const TransactionDetails = (props: Props) => {
 
 	const listToRender = [];
 
-	useEffect(() => {
-		console.log(mainnetAlchemy);
-	}, []);
+	// useEffect(() => {
+	// 	console.log(mainnetAlchemy);
+	// }, []);
 
 	return (
-		<Flex display={'flex'} direction={'column'} flex={1} bg={'#111727'}>
+		<Flex display={'flex'} flexWrap={'wrap'} direction={'column'} flex={1} bg={'#111727'}>
 			<Flex
-				border={'1px solid red'}
+				// border={'1px solid red'}
 				display={'flex'}
 				width={'100%'}
 				direction="row"
@@ -86,7 +86,8 @@ export const TransactionDetails = (props: Props) => {
 				</motion.div>
 			</Flex>
 			<Flex
-				border={'1px solid red'}
+				// border={'1px solid red'}
+				mt={5}
 				display={'flex'}
 				flex={2}
 				width={'100%'}
@@ -160,6 +161,44 @@ export const TransactionDetails = (props: Props) => {
 						<Text fontSize={30} color={'white'}>
 							{/* <RiExternalLinkFill /> */}
 							{swapDetails.recipient.substr(0, 6)}
+						</Text>
+					</Flex>
+				</motion.div>
+			</Flex>
+			<Flex
+				// border={'1px solid red'}
+				mt={5}
+				display={'flex'}
+				flex={2}
+				width={'100%'}
+				direction="row"
+				align={'flex-start'}
+				justify="space-evenly"
+			>
+				<motion.div
+					style={{ position: 'relative' }}
+					animate={{ y: 5, opacity: 1 }}
+					transition={{ ease: 'easeIn', delay: 0.17 }}
+				>
+					<Flex
+						flex={1}
+						//  border={'1px solid blue'}
+						height={75}
+						direction={'column'}
+						justify="center"
+						align={'center'}
+					>
+						<Text color={'#686B7A'}>Gas Price</Text>
+						{/* <Text fontSize={30} color={'#FEFEFF'}>
+							{swapDetails.sender}
+						</Text> */}
+						{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
+						{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
+						<Text fontSize={30} color={'white'}>
+							{/* <RiExternalLinkFill /> */}
+							{parseFloat(ethers.utils.formatUnits(swapDetails.transaction.gasPrice, 'gwei')).toFixed(2)}
+							{/* {parseFloat(ethers.utils.formatUnits(swapDetails.transaction.gasUsed, 'gwei'))} */}
+							{/* {swapDetails.transaction.gasUsed} */}
 						</Text>
 					</Flex>
 				</motion.div>

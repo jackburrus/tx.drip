@@ -56,6 +56,7 @@ export const SWAP_DATA_QUERY = gql`
 				transaction {
 					id
 					gasUsed
+					gasPrice
 				}
 				token0 {
 					id

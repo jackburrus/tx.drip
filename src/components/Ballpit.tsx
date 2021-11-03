@@ -57,7 +57,7 @@ const Borders = (props) => {
 };
 
 export default function BallPit(props) {
-	const { color, title, data, releaseFloor, setReleaseFloor, setSwapDetails, setSwapHovered, title } = props;
+	const { color, title, data, releaseFloor, setReleaseFloor, setSwapDetails, setSwapHovered } = props;
 	const [txs, settxs] = useState([]);
 	const [txData, setTxData] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -71,7 +71,7 @@ export default function BallPit(props) {
 				const data = tx.swaps[0] ? tx.swaps[0] : null;
 
 				if (!txs.includes(data) && data) {
-					console.log(tx.swaps[0] ? tx.swaps[0].id : null);
+					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
 					settxs((oldArray) => [...oldArray, data]);
 				}
 			});

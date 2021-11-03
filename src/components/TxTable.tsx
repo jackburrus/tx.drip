@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody, Tr, Th, Td, chakra, Box, Flex } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, chakra, Box, Flex, Link } from '@chakra-ui/react';
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { useTable, useSortBy } from 'react-table';
 import React, { useEffect } from 'react';
@@ -18,9 +18,22 @@ function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+const getNetworkUrl = (network) => {
+	switch (network) {
+		case 'Mainnet':
+			return 'https://etherscan.io/address/';
+		case 'Optimism':
+			return 'https://optimistic.etherscan.io/address/';
+		case 'Arbitrum':
+			return 'https://arbiscan.io/address/';
+		default:
+			return 'https://etherscan.io/address/';
+	}
+};
+
 export const TxTable = (props) => {
 	const { txData, setAllTransactions } = props;
-	console.log(txData);
+	// console.log(txData);
 	// const data = React.useMemo(
 	// 	() => [
 	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
@@ -91,7 +104,18 @@ export const TxTable = (props) => {
 				Header: 'Account',
 				accessor: 'sender',
 				// width: 90,
-				// Cell: (row) => '$' + numberWithCommas(parseFloat(row.value).toFixed(2)),
+				Cell: (row) => {
+					// console.log(row.cell.row.original.Network);
+					return (
+						<Link
+							target="_blank"
+							href={getNetworkUrl(row.cell.row.original.Network) + row.value}
+							rel="noopener noreferrer"
+						>
+							{row.value.substr(0, 6)}
+						</Link>
+					);
+				},
 			},
 			{
 				Header: 'Token From',
