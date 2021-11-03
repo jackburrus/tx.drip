@@ -14,8 +14,21 @@ export const scale = (fromRange, toRange) => {
 	return (from) => (from - fromRange[0]) * d + toRange[0];
 };
 
+const getNetworkUrl = (network) => {
+	switch (network) {
+		case 'Mainnet':
+			return 'https://etherscan.io/tx/';
+		case 'Optimism':
+			return 'https://optimistic.etherscan.io/tx/';
+		case 'Arbitrum':
+			return 'https://arbiscan.io/tx/';
+		default:
+			return 'https://etherscan.io/tx/';
+	}
+};
+
 export const WrappedSphere = (props: Props) => {
-	const { count, data, setTxData, setSwapHovered, setSwapDetails } = props;
+	const { count, data, setTxData, setSwapHovered, setSwapDetails, title } = props;
 	const { viewport } = useThree();
 	const [hover, setHover] = useState(false);
 	const [texturePath, setTexturePath] = useState('/FormattedImages/GENERIC.png');
@@ -50,7 +63,7 @@ export const WrappedSphere = (props: Props) => {
 	return (
 		<instancedMesh
 			onPointerOver={() => {
-				// console.log(data);
+				console.log(data);
 				setTxData(data);
 				setHover(true);
 				setSwapHovered(true);
@@ -61,6 +74,10 @@ export const WrappedSphere = (props: Props) => {
 				setHover(false);
 				setSwapHovered(false);
 				setSwapDetails(null);
+			}}
+			// write an onclick that navigates to a website
+			onClick={() => {
+				window.open(getNetworkUrl(title) + data.transaction.id);
 			}}
 			ref={ref}
 			castShadow

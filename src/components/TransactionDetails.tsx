@@ -4,7 +4,12 @@ import { useSpring, animated, useTransition } from 'react-spring';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
+// import { Address, Balance } from 'eth-components/ant';
+import Address from './Address';
+import { ethers } from 'ethers';
 interface Props {}
+
+const mainnetAlchemy = new ethers.providers.StaticJsonRpcProvider(process.env.ALCHEMY_MAINNET);
 
 var formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
@@ -31,9 +36,8 @@ export const TransactionDetails = (props: Props) => {
 	const listToRender = [];
 
 	useEffect(() => {
-		listToRender.push(swapDetails['token0'].name);
-		listToRender.push(swapDetails['token1'].name);
-	}, [swapDetails]);
+		console.log(mainnetAlchemy);
+	}, []);
 
 	return (
 		<Flex display={'flex'} direction={'column'} flex={1} bg={'#111727'}>
@@ -106,6 +110,56 @@ export const TransactionDetails = (props: Props) => {
 						<Text color={'#686B7A'}>Amount USD</Text>
 						<Text fontSize={30} color={'#FEFEFF'}>
 							{formatter.format(swapDetails.amountUSD)}
+						</Text>
+					</Flex>
+				</motion.div>
+				<motion.div
+					style={{ position: 'relative' }}
+					animate={{ y: 5, opacity: 1 }}
+					transition={{ ease: 'easeIn', delay: 0.17 }}
+				>
+					<Flex
+						flex={1}
+						//  border={'1px solid blue'}
+						height={75}
+						direction={'column'}
+						justify="center"
+						align={'center'}
+					>
+						<Text color={'#686B7A'}>Sender</Text>
+						{/* <Text fontSize={30} color={'#FEFEFF'}>
+							{swapDetails.sender}
+						</Text> */}
+						{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
+						{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
+						<Text fontSize={30} color={'white'}>
+							{/* <RiExternalLinkFill /> */}
+							{swapDetails.sender.substr(0, 6)}
+						</Text>
+					</Flex>
+				</motion.div>
+				<motion.div
+					style={{ position: 'relative' }}
+					animate={{ y: 5, opacity: 1 }}
+					transition={{ ease: 'easeIn', delay: 0.17 }}
+				>
+					<Flex
+						flex={1}
+						//  border={'1px solid blue'}
+						height={75}
+						direction={'column'}
+						justify="center"
+						align={'center'}
+					>
+						<Text color={'#686B7A'}>Receiver</Text>
+						{/* <Text fontSize={30} color={'#FEFEFF'}>
+							{swapDetails.sender}
+						</Text> */}
+						{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
+						{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
+						<Text fontSize={30} color={'white'}>
+							{/* <RiExternalLinkFill /> */}
+							{swapDetails.recipient.substr(0, 6)}
 						</Text>
 					</Flex>
 				</motion.div>

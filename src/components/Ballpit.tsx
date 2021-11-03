@@ -57,7 +57,7 @@ const Borders = (props) => {
 };
 
 export default function BallPit(props) {
-	const { color, title, data, releaseFloor, setReleaseFloor, setSwapDetails, setSwapHovered } = props;
+	const { color, title, data, releaseFloor, setReleaseFloor, setSwapDetails, setSwapHovered, title } = props;
 	const [txs, settxs] = useState([]);
 	const [txData, setTxData] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -173,6 +173,7 @@ export default function BallPit(props) {
 								setTxData={setTxData}
 								setSwapDetails={setSwapDetails}
 								setSwapHovered={setSwapHovered}
+								title={title}
 							/>
 						);
 					})}
