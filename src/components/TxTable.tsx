@@ -108,13 +108,13 @@ export const TxTable = (props) => {
 				Cell: (row) => {
 					// console.log(row.cell.row.original.Network);
 					return (
-						<Text
-						// target="_blank"
-						// href={getNetworkUrl(row.cell.row.original.Network) + row.value}
-						// rel="noopener noreferrer"
+						<Link
+							target="_blank"
+							href={getNetworkUrl(row.cell.row.original.Network) + row.value}
+							rel="noopener noreferrer"
 						>
 							{row.value.substr(0, 6)}
-						</Text>
+						</Link>
 					);
 				},
 			},
