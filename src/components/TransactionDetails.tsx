@@ -149,11 +149,7 @@ export const TransactionDetails = (props: Props) => {
 					<Text fontFamily={'Nunito'} color={'#686B7A'}>
 						Sender
 					</Text>
-					{/* <Text fontSize={30} color={'#FEFEFF'}>
-							{swapDetails.sender}
-						</Text> */}
-					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
-					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={24} /> */}
+
 					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
 						{ensSender ? ensSender : swapDetails.sender.substr(0, 6)}
 					</Text>
@@ -170,12 +166,7 @@ export const TransactionDetails = (props: Props) => {
 					<Text fontFamily={'Nunito'} color={'#686B7A'}>
 						Receiver
 					</Text>
-					{/* <Text fontSize={30} color={'#FEFEFF'}>
-							{swapDetails.sender}
-						</Text> */}
-					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
-					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
-					{/* <Address address={swapDetails.recipient} ensProvider={mainnetAlchemy} fontSize={24} /> */}
+
 					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
 						{ensRecipient ? ensRecipient : swapDetails.recipient.substr(0, 6)}
 					</Text>
@@ -200,11 +191,7 @@ export const TransactionDetails = (props: Props) => {
 					align={'center'}
 				>
 					<Text color={'#686B7A'}>Gas Price</Text>
-					{/* <Text fontSize={30} color={'#FEFEFF'}>
-							{swapDetails.sender}
-						</Text> */}
-					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
-					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
+
 					<Text fontSize={30} color={'white'}>
 						{/* <RiExternalLinkFill /> */}
 						{/* {parseFloat(ethers.utils.formatUnits(swapDetails.transaction.gasPrice, 'gwei'))} Gwei */}

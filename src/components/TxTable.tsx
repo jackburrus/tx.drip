@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody, Tr, Th, Td, chakra, Box, Flex, Link } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, chakra, Box, Flex, Link, Text } from '@chakra-ui/react';
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { useTable, useSortBy } from 'react-table';
 import React, { useEffect } from 'react';
@@ -108,13 +108,13 @@ export const TxTable = (props) => {
 				Cell: (row) => {
 					// console.log(row.cell.row.original.Network);
 					return (
-						<Link
-							target="_blank"
-							href={getNetworkUrl(row.cell.row.original.Network) + row.value}
-							rel="noopener noreferrer"
+						<Text
+						// target="_blank"
+						// href={getNetworkUrl(row.cell.row.original.Network) + row.value}
+						// rel="noopener noreferrer"
 						>
 							{row.value.substr(0, 6)}
-						</Link>
+						</Text>
 					);
 				},
 			},
