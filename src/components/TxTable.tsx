@@ -9,8 +9,8 @@ const convertTimestamp = (timestamp) => {
 	const hours = date.getHours();
 	const minutes = '0' + date.getMinutes();
 	const seconds = '0' + date.getSeconds();
-	const ampm = hours >= 12 ? 'pm' : 'am';
-	const formattedTime = hours + ':' + minutes.substr(-2) + ' ' + ampm;
+	// const ampm = hours >= 12 ? 'pm' : 'am';
+	const formattedTime = hours + ':' + minutes.substr(-2);
 	return formattedTime;
 };
 
@@ -47,7 +47,7 @@ export const TxTable = (props) => {
 	// 	[],
 	// );
 	const data = React.useMemo(
-		() => txData.slice(0, 20),
+		() => txData.slice(0, 20).sort(() => Math.random() - 0.5),
 
 		[txData],
 	);
@@ -92,6 +92,7 @@ export const TxTable = (props) => {
 			{
 				Header: 'Time',
 				accessor: 'timestamp',
+				width: 120,
 				Cell: (row) => convertTimestamp(row.value),
 			},
 			{
@@ -119,11 +120,11 @@ export const TxTable = (props) => {
 			},
 			{
 				Header: 'Token From',
-				accessor: 'token0.name',
+				accessor: 'token0.symbol',
 			},
 			{
 				Header: 'Token To',
-				accessor: 'token1.name',
+				accessor: 'token1.symbol',
 			},
 			// {
 			// 	Header: 'ID',
@@ -179,7 +180,7 @@ export const TxTable = (props) => {
 									borderBottomColor={'#202737'}
 									fontFamily={'Nunito'}
 									color={'#697480'}
-									maxWidth="100"
+									// minWidth="120"
 									{...cell.getCellProps()}
 									isNumeric={cell.column.isNumeric}
 								>

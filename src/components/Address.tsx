@@ -121,7 +121,7 @@ export default function Address(props) {
 		<HStack fontSize={props.fontSize ? props.fontSize : 28} verticalAlign="middle">
 			{/* <span style={{ verticalAlign: "middle" }}>
       </span> */}
-			<Blockies seed={address.toLowerCase()} size={8} scale={props.fontSize ? props.fontSize / 7 : 4} />
+			{/* <Blockies seed={address.toLowerCase()} size={8} scale={props.fontSize ? props.fontSize / 7 : 4} /> */}
 			{text}
 			{/* <IconButton
 				onClick={onCopy}

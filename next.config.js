@@ -5,4 +5,7 @@ module.exports = {
 		esmExternals: false,
 	},
 	typescript: { ignoreBuildErrors: true },
+	env: {
+		ALCHEMY_MAINNET: process.env.ALCHEMY_MAINNET,
+	},
 };

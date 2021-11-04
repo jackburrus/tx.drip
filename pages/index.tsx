@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 		client: mainnetClient,
 		notifyOnNetworkStatusChange: true,
 		pollInterval: 5000,
-		onCompleted: () => console.log('Completed'),
+		onCompleted: () => console.log('Completed for Mainnet successfully'),
 		onError: (error) => console.log(error),
 	});
 	const {
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
 		client: optimismClient,
 		notifyOnNetworkStatusChange: true,
 		pollInterval: 5000,
-		onCompleted: () => console.log('Completed'),
+		onCompleted: () => console.log('Completed for Optimism successfully'),
 		onError: (error) => console.log(error),
 	});
 	const {
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
 		client: arbitumClient,
 		notifyOnNetworkStatusChange: true,
 		pollInterval: 5000,
-		onCompleted: () => console.log('Completed'),
+		onCompleted: () => console.log('Completed for Arbitrum successfully'),
 		onError: (error) => console.log(error),
 	});
 
@@ -137,7 +137,8 @@ const Home: NextPage = () => {
 				/>
 				<Pane
 					// color={'#686de0'}
-					color={'#596275'}
+					color={'#786fa6'}
+					// color={'#596275'}
 					title="Arbitrum"
 					data={ArbitumData}
 					releaseFloor={releaseFloor}

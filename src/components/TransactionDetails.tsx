@@ -10,7 +10,9 @@ import { ethers } from 'ethers';
 import { weiToEther } from 'essential-eth';
 interface Props {}
 
-const mainnetAlchemy = new ethers.providers.StaticJsonRpcProvider(process.env.ALCHEMY_MAINNET);
+const mainnetAlchemy = new ethers.providers.StaticJsonRpcProvider(
+	'https://eth-mainnet.alchemyapi.io/v2/' + process.env.ALCHEMY_MAINNET,
+);
 
 var formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
@@ -56,9 +58,9 @@ export const TransactionDetails = (props: Props) => {
 
 	const listToRender = [];
 
-	// useEffect(() => {
-	// 	console.log(mainnetAlchemy);
-	// }, []);
+	useEffect(() => {
+		console.log('https://eth-mainnet.alchemyapi.io/v2/' + process.env.ALCHEMY_MAINNET);
+	}, []);
 
 	return (
 		<Flex display={'flex'} flexWrap={'wrap'} direction={'column'} flex={1} bg={'#111727'}>
@@ -135,11 +137,16 @@ export const TransactionDetails = (props: Props) => {
 							{swapDetails.sender}
 						</Text> */}
 					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
-					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
-					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
-						{/* <RiExternalLinkFill /> */}
+					<Address
+						// address={swapDetails.sender}
+						address={'0xE35ef95A80839C3c261197B6c93E5765C9A6a31a'}
+						ensProvider={mainnetAlchemy}
+						fontSize={30}
+					/>
+					{/* <Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
 						{swapDetails.sender.substr(0, 6)}
-					</Text>
+
+					</Text> */}
 				</Flex>
 
 				<Flex

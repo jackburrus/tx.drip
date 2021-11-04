@@ -35,12 +35,14 @@ export const WrappedSphere = (props: Props) => {
 	const texture = useTexture(texturePath);
 
 	useEffect(() => {
-		const coin = CoinManifest.filter((coin) => coin.symbol === data['token0'].symbol);
+		const coin = CoinManifest.filter((coin) => coin.symbol === data['token1'].symbol);
 		if (coin.length > 0) {
 			// console.log(coin[0]['Image Path']);
 			// setTexturePath('/FormattedImages/AAVE.png');
 			setTexturePath(coin[0]['Image Path']);
-		} else if (data['token0'].name === 'Wrapped Ethereum') {
+		} else if (data['token1'].name === 'Wrapped Ethereum' || data['token1'].name === 'Wrapped Ether') {
+			setTexturePath('/FormattedImages/ETH.png');
+		} else if (data['token1'].name == 'WETH') {
 			setTexturePath('/FormattedImages/ETH.png');
 		} else {
 			setTexturePath('/FormattedImages/GENERIC.png');
