@@ -61,7 +61,7 @@ export const TxTable = (props) => {
 	const getNetworkImage = (network) => {
 		switch (network) {
 			case 'Mainnet':
-				return '/eth.png';
+				return '/eth-logo.png';
 
 			case 'Arbitrum':
 				return '/arbitrum.png';
