@@ -58,10 +58,6 @@ export const TransactionDetails = (props: Props) => {
 
 	const listToRender = [];
 
-	useEffect(() => {
-		console.log('https://eth-mainnet.alchemyapi.io/v2/' + process.env.ALCHEMY_MAINNET);
-	}, []);
-
 	return (
 		<Flex display={'flex'} flexWrap={'wrap'} direction={'column'} flex={1} bg={'#111727'}>
 			<Flex
@@ -117,7 +113,7 @@ export const TransactionDetails = (props: Props) => {
 					<Text fontFamily={'Nunito'} color={'#686B7A'}>
 						Amount USD
 					</Text>
-					<Text fontFamily={'Nunito'} fontSize={30} color={'#FEFEFF'}>
+					<Text fontFamily={'Nunito'} fontSize={24} color={'#FEFEFF'}>
 						{formatter.format(swapDetails.amountUSD)}
 					</Text>
 				</Flex>
@@ -137,12 +133,7 @@ export const TransactionDetails = (props: Props) => {
 							{swapDetails.sender}
 						</Text> */}
 					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
-					<Address
-						// address={swapDetails.sender}
-						address={'0xE35ef95A80839C3c261197B6c93E5765C9A6a31a'}
-						ensProvider={mainnetAlchemy}
-						fontSize={30}
-					/>
+					<Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={24} />
 					{/* <Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
 						{swapDetails.sender.substr(0, 6)}
 
@@ -165,10 +156,7 @@ export const TransactionDetails = (props: Props) => {
 						</Text> */}
 					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
 					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
-					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
-						{/* <RiExternalLinkFill /> */}
-						{swapDetails.recipient.substr(0, 6)}
-					</Text>
+					<Address address={swapDetails.recipient} ensProvider={mainnetAlchemy} fontSize={24} />
 				</Flex>
 			</Flex>
 			<Flex
