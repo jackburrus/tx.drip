@@ -10,9 +10,9 @@ import { ethers } from 'ethers';
 import { weiToEther } from 'essential-eth';
 interface Props {}
 
-const mainnetAlchemy = new ethers.providers.StaticJsonRpcProvider(
-	'https://eth-mainnet.alchemyapi.io/v2/' + process.env.ALCHEMY_MAINNET,
-);
+// const mainnetAlchemy = new ethers.providers.StaticJsonRpcProvider(
+// 	'https://eth-mainnet.alchemyapi.io/v2/' + process.env.ALCHEMY_MAINNET,
+// );
 
 var formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
@@ -58,22 +58,22 @@ export const TransactionDetails = (props: Props) => {
 	const [ensSender, setEnsSender] = React.useState('');
 	const [ensRecipient, setEnsRecipient] = React.useState('');
 
-	const getEnsDetails = async (address: string, type: string) => {
-		const ensName = await mainnetAlchemy.lookupAddress(address);
+	// const getEnsDetails = async (address: string, type: string) => {
+	// 	const ensName = await mainnetAlchemy.lookupAddress(address);
 
-		if (type === 'sender') {
-			setEnsSender(ensName);
-		}
-		if (type === 'recipient') {
-			setEnsRecipient(ensName);
-		}
-	};
+	// 	if (type === 'sender') {
+	// 		setEnsSender(ensName);
+	// 	}
+	// 	if (type === 'recipient') {
+	// 		setEnsRecipient(ensName);
+	// 	}
+	// };
 
-	useEffect(() => {
-		// getEnsDetails('Examples ENS address here', 'sender');
-		getEnsDetails(swapDetails.sender, 'sender');
-		getEnsDetails(swapDetails.recipient, 'recipient');
-	}, []);
+	// useEffect(() => {
+	// 	// getEnsDetails('Examples ENS address here', 'sender');
+	// 	getEnsDetails(swapDetails.sender, 'sender');
+	// 	getEnsDetails(swapDetails.recipient, 'recipient');
+	// }, []);
 
 	const listToRender = [];
 
@@ -151,7 +151,8 @@ export const TransactionDetails = (props: Props) => {
 					</Text>
 
 					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
-						{ensSender ? ensSender : swapDetails.sender.substr(0, 6)}
+						{/* {ensSender ? ensSender : swapDetails.sender.substr(0, 6)} */}
+						{swapDetails.sender.substr(0, 6)}
 					</Text>
 				</Flex>
 
@@ -168,7 +169,8 @@ export const TransactionDetails = (props: Props) => {
 					</Text>
 
 					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
-						{ensRecipient ? ensRecipient : swapDetails.recipient.substr(0, 6)}
+						{/* {ensRecipient ? ensRecipient : swapDetails.recipient.substr(0, 6)} */}
+						{swapDetails.recipient.substr(0, 6)}
 					</Text>
 				</Flex>
 			</Flex>
