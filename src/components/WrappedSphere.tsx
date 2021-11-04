@@ -44,6 +44,8 @@ export const WrappedSphere = (props: Props) => {
 			setTexturePath('/ETH.png');
 		} else if (data['token1'].name == 'WETH') {
 			setTexturePath('/ETH.png');
+		} else if (data['token1'].name == 'Tether USD') {
+			setTexturePath('/Tether.png');
 		} else {
 			setTexturePath('/GENERIC.png');
 		}
