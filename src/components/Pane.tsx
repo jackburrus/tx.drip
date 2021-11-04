@@ -40,7 +40,6 @@ export const Pane: React.FC<PaneTypes> = (props) => {
 				setReleaseFloor={setReleaseFloor}
 				setSwapDetails={setSwapDetails}
 				setSwapHovered={setSwapHovered}
-				title={title}
 			/>
 		</Flex>
 	);

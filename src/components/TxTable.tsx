@@ -171,12 +171,13 @@ export const TxTable = (props) => {
 				))}
 			</Thead>
 			<Tbody bg={'#111727'} {...getTableBodyProps()}>
-				{rows.map((row) => {
+				{rows.map((row, index) => {
 					prepareRow(row);
 					return (
-						<Tr maxWidth="100" {...row.getRowProps()}>
-							{row.cells.map((cell) => (
+						<Tr key={index} maxWidth="100" {...row.getRowProps()}>
+							{row.cells.map((cell, index) => (
 								<Td
+									key={index}
 									borderBottomColor={'#202737'}
 									fontFamily={'Nunito'}
 									color={'#697480'}

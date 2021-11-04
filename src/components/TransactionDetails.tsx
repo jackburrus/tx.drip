@@ -55,6 +55,25 @@ const item = {
 
 export const TransactionDetails = (props: Props) => {
 	const { swapDetails } = props;
+	const [ensSender, setEnsSender] = React.useState('');
+	const [ensRecipient, setEnsRecipient] = React.useState('');
+
+	const getEnsDetails = async (address: string, type: string) => {
+		const ensName = await mainnetAlchemy.lookupAddress(address);
+
+		if (type === 'sender') {
+			setEnsSender(ensName);
+		}
+		if (type === 'recipient') {
+			setEnsRecipient(ensName);
+		}
+	};
+
+	useEffect(() => {
+		// getEnsDetails('Examples ENS address here', 'sender');
+		getEnsDetails(swapDetails.sender, 'sender');
+		getEnsDetails(swapDetails.recipient, 'recipient');
+	}, []);
 
 	const listToRender = [];
 
@@ -133,11 +152,10 @@ export const TransactionDetails = (props: Props) => {
 							{swapDetails.sender}
 						</Text> */}
 					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
-					<Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={24} />
-					{/* <Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
-						{swapDetails.sender.substr(0, 6)}
-
-					</Text> */}
+					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={24} /> */}
+					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
+						{ensSender ? ensSender : swapDetails.sender.substr(0, 6)}
+					</Text>
 				</Flex>
 
 				<Flex
@@ -156,7 +174,10 @@ export const TransactionDetails = (props: Props) => {
 						</Text> */}
 					{/* <Address provider={process.env.ALCHEMY_MAINNET}  /> */}
 					{/* <Address address={swapDetails.sender} ensProvider={mainnetAlchemy} fontSize={16} /> */}
-					<Address address={swapDetails.recipient} ensProvider={mainnetAlchemy} fontSize={24} />
+					{/* <Address address={swapDetails.recipient} ensProvider={mainnetAlchemy} fontSize={24} /> */}
+					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
+						{ensRecipient ? ensRecipient : swapDetails.recipient.substr(0, 6)}
+					</Text>
 				</Flex>
 			</Flex>
 			<Flex
