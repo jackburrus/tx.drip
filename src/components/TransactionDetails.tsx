@@ -121,6 +121,7 @@ export const TransactionDetails = (props: Props) => {
 				align={'flex-start'}
 				justify="space-evenly"
 			>
+				{/* REbuild */}
 				<Flex
 					flex={1}
 					//  border={'1px solid blue'}
