@@ -99,56 +99,55 @@ const Home: NextPage = () => {
 	}, []);
 
 	return (
-		<Image src={'/AAVE.png'} width={200} height={100} />
-		// <chakra.main display="flex" height="100vh">
-		// 	<Flex direction="column" flex={1}>
-		// 		<Pane
-		// 			color={'#95afc0'}
-		// 			// color={'#24303B'}
-		// 			title="Mainnet"
-		// 			data={MainnetData}
-		// 			releaseFloor={releaseFloor}
-		// 			setReleaseFloor={setReleaseFloor}
-		// 			setSwapHovered={setSwapHovered}
-		// 			setSwapDetails={setSwapDetails}
-		// 		/>
-		// 		{swapHovered && swapDetails ? (
-		// 			<TransactionDetails swapDetails={swapDetails} />
-		// 		) : (
-		// 			<Pane
-		// 				type="Stats"
-		// 				// color="#212528"
-		// 				color="white"
-		// 				data={allTransactions}
-		// 				setAllTransactions={setAllTransactions}
-		// 			/>
-		// 		)}
-		// 	</Flex>
+		<chakra.main display="flex" height="100vh">
+			<Flex direction="column" flex={1}>
+				<Pane
+					color={'#95afc0'}
+					// color={'#24303B'}
+					title="Mainnet"
+					data={MainnetData}
+					releaseFloor={releaseFloor}
+					setReleaseFloor={setReleaseFloor}
+					setSwapHovered={setSwapHovered}
+					setSwapDetails={setSwapDetails}
+				/>
+				{swapHovered && swapDetails ? (
+					<TransactionDetails swapDetails={swapDetails} />
+				) : (
+					<Pane
+						type="Stats"
+						// color="#212528"
+						color="white"
+						data={allTransactions}
+						setAllTransactions={setAllTransactions}
+					/>
+				)}
+			</Flex>
 
-		// 	<Flex direction="column" flex={1}>
-		// 		<Pane
-		// 			// color={'#ff7979'}
-		// 			color={'#ea8685'}
-		// 			title="Optimism"
-		// 			data={OptimismData}
-		// 			releaseFloor={releaseFloor}
-		// 			setReleaseFloor={setReleaseFloor}
-		// 			setSwapHovered={setSwapHovered}
-		// 			setSwapDetails={setSwapDetails}
-		// 		/>
-		// 		<Pane
-		// 			// color={'#686de0'}
-		// 			color={'#786fa6'}
-		// 			// color={'#596275'}
-		// 			title="Arbitrum"
-		// 			data={ArbitumData}
-		// 			releaseFloor={releaseFloor}
-		// 			setReleaseFloor={setReleaseFloor}
-		// 			setSwapHovered={setSwapHovered}
-		// 			setSwapDetails={setSwapDetails}
-		// 		/>
-		// 	</Flex>
-		// </chakra.main>
+			<Flex direction="column" flex={1}>
+				<Pane
+					// color={'#ff7979'}
+					color={'#ea8685'}
+					title="Optimism"
+					data={OptimismData}
+					releaseFloor={releaseFloor}
+					setReleaseFloor={setReleaseFloor}
+					setSwapHovered={setSwapHovered}
+					setSwapDetails={setSwapDetails}
+				/>
+				<Pane
+					// color={'#686de0'}
+					color={'#786fa6'}
+					// color={'#596275'}
+					title="Arbitrum"
+					data={ArbitumData}
+					releaseFloor={releaseFloor}
+					setReleaseFloor={setReleaseFloor}
+					setSwapHovered={setSwapHovered}
+					setSwapDetails={setSwapDetails}
+				/>
+			</Flex>
+		</chakra.main>
 	);
 };
 
