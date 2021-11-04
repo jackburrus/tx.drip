@@ -70,14 +70,14 @@ export const TransactionDetails = (props: Props) => {
 	const listToRender = [];
 
 	return (
-		<Flex display={'flex'} flexWrap={'wrap'} direction={'column'} flex={1} bg={'#111727'}>
+		<Flex display={'flex'} flexWrap={'wrap'} align={'center'} direction={'column'} flex={1} bg={'#111727'}>
 			<Flex
 				// border={'1px solid red'}
 				display={'flex'}
 				width={'100%'}
 				direction="row"
 				mt={20}
-				align={'flex-start'}
+				align={'flex-end'}
 				justify="space-evenly"
 			>
 				<motion.div variants={container} initial="hidden" animate="show">
@@ -104,14 +104,14 @@ export const TransactionDetails = (props: Props) => {
 				</motion.div>
 			</Flex>
 			<Flex
-				border={'1px solid red'}
-				mt={5}
+				// border={'1px solid red'}
+				mt={10}
 				display={'flex'}
 				flex={2}
-				width={'100%'}
+				width={'70%'}
 				direction="row"
-				align={'center'}
-				justify="space-evenly"
+				align={'flex-start'}
+				justify="space-around"
 			>
 				{/* REbuild */}
 				<Flex
