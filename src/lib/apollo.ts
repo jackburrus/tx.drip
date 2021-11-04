@@ -53,6 +53,7 @@ export const SWAP_DATA_QUERY = gql`
 				amountUSD
 				sender
 				recipient
+				origin
 				transaction {
 					id
 					gasUsed

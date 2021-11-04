@@ -10,9 +10,9 @@ import { ethers } from 'ethers';
 import { weiToEther } from 'essential-eth';
 interface Props {}
 
-// const mainnetAlchemy = new ethers.providers.StaticJsonRpcProvider(
-// 	'https://eth-mainnet.alchemyapi.io/v2/' + process.env.ALCHEMY_MAINNET,
-// );
+const mainnetAlchemy = new ethers.providers.StaticJsonRpcProvider(
+	'https://eth-mainnet.alchemyapi.io/v2/' + process.env.ALCHEMY_MAINNET,
+);
 
 var formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
@@ -56,24 +56,16 @@ const item = {
 export const TransactionDetails = (props: Props) => {
 	const { swapDetails } = props;
 	const [ensSender, setEnsSender] = React.useState('');
-	const [ensRecipient, setEnsRecipient] = React.useState('');
+	// const [ensRecipient, setEnsRecipient] = React.useState('');
 
-	// const getEnsDetails = async (address: string, type: string) => {
-	// 	const ensName = await mainnetAlchemy.lookupAddress(address);
+	const getEnsDetails = async (address: string) => {
+		const ensName = await mainnetAlchemy.lookupAddress(address);
+		setEnsSender(ensName);
+	};
 
-	// 	if (type === 'sender') {
-	// 		setEnsSender(ensName);
-	// 	}
-	// 	if (type === 'recipient') {
-	// 		setEnsRecipient(ensName);
-	// 	}
-	// };
-
-	// useEffect(() => {
-	// 	// getEnsDetails('Examples ENS address here', 'sender');
-	// 	getEnsDetails(swapDetails.sender, 'sender');
-	// 	getEnsDetails(swapDetails.recipient, 'recipient');
-	// }, []);
+	useEffect(() => {
+		getEnsDetails(swapDetails.origin);
+	}, []);
 
 	const listToRender = [];
 
@@ -112,13 +104,13 @@ export const TransactionDetails = (props: Props) => {
 				</motion.div>
 			</Flex>
 			<Flex
-				// border={'1px solid red'}
+				border={'1px solid red'}
 				mt={5}
 				display={'flex'}
 				flex={2}
 				width={'100%'}
 				direction="row"
-				align={'flex-start'}
+				align={'center'}
 				justify="space-evenly"
 			>
 				{/* REbuild */}
@@ -147,43 +139,14 @@ export const TransactionDetails = (props: Props) => {
 					align={'center'}
 				>
 					<Text fontFamily={'Nunito'} color={'#686B7A'}>
-						Sender
+						Account
 					</Text>
 
 					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
-						{/* {ensSender ? ensSender : swapDetails.sender.substr(0, 6)} */}
-						{swapDetails.sender.substr(0, 6)}
+						{ensSender ? ensSender : swapDetails.origin.substr(0, 6)}
+						{/* {swapDetails.origin.substr(0, 6)} */}
 					</Text>
 				</Flex>
-
-				<Flex
-					flex={1}
-					//  border={'1px solid blue'}
-					height={75}
-					direction={'column'}
-					justify="center"
-					align={'center'}
-				>
-					<Text fontFamily={'Nunito'} color={'#686B7A'}>
-						Receiver
-					</Text>
-
-					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
-						{/* {ensRecipient ? ensRecipient : swapDetails.recipient.substr(0, 6)} */}
-						{swapDetails.recipient.substr(0, 6)}
-					</Text>
-				</Flex>
-			</Flex>
-			<Flex
-				// border={'1px solid red'}
-				mt={5}
-				display={'flex'}
-				flex={2}
-				width={'100%'}
-				direction="row"
-				align={'flex-start'}
-				justify="space-evenly"
-			>
 				<Flex
 					flex={1}
 					//  border={'1px solid blue'}
@@ -201,6 +164,37 @@ export const TransactionDetails = (props: Props) => {
 					</Text>
 				</Flex>
 			</Flex>
+			{/* <Flex
+				// border={'1px solid red'}
+				mt={5}
+				display={'flex'}
+				flex={2}
+				width={'100%'}
+				direction="row"
+				align={'flex-start'}
+				justify="space-evenly"
+			>
+
+			</Flex> */}
 		</Flex>
 	);
 };
+
+// <Flex
+// 					flex={1}
+// 					//  border={'1px solid blue'}
+// 					height={75}
+// 					direction={'column'}
+// 					justify="center"
+// 					align={'center'}
+// 				>
+// 					<Text fontFamily={'Nunito'} color={'#686B7A'}>
+// 						Receiver
+// 					</Text>
+
+// 					<Text fontFamily={'Nunito'} fontSize={30} color={'white'}>
+// 						{/* {ensRecipient ? ensRecipient : swapDetails.recipient.substr(0, 6)} */}
+// 						{swapDetails.recipient.substr(0, 6)}
+// 					</Text>
+
+// 				</Flex>

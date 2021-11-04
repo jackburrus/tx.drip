@@ -103,7 +103,7 @@ export const TxTable = (props) => {
 			},
 			{
 				Header: 'Account',
-				accessor: 'sender',
+				accessor: 'origin',
 				// width: 90,
 				Cell: (row) => {
 					// console.log(row.cell.row.original.Network);
