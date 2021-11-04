@@ -99,7 +99,7 @@ const Home: NextPage = () => {
 	}, []);
 
 	return (
-		<Image src={'/FormattedImages/GENERIC.png'} width={100} height={100} />
+		<Image src={'/AAVE.png'} width={200} height={100} />
 		// <chakra.main display="flex" height="100vh">
 		// 	<Flex direction="column" flex={1}>
 		// 		<Pane
