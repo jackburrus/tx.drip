@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Pane } from '../src/components/Pane';
 import { TransactionDetails } from '../src/components/TransactionDetails';
 import { arbitumClient, mainnetClient, optimismClient, SWAP_DATA_QUERY } from '../src/lib/apollo';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
 	// Load all transactions into an array for table
@@ -111,6 +112,9 @@ const Home: NextPage = () => {
 
 	return (
 		<chakra.main display="flex" height="100vh">
+			<Head>
+				<link rel="favicon" href="/favicon.ico" />
+			</Head>
 			<Flex direction="column" flex={1}>
 				<Pane
 					color={'#95afc0'}

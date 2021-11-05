@@ -8,4 +8,8 @@ module.exports = {
 	env: {
 		ALCHEMY_MAINNET: process.env.ALCHEMY_MAINNET,
 	},
+	// images: {
+	// 	loader: 'imgix',
+	// 	path: '',
+	// },
 };
