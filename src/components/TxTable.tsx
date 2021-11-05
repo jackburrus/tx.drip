@@ -119,7 +119,7 @@ export const TxTable = (props) => {
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, useSortBy);
 
 	return txData ? (
-		<Table {...getTableProps()}>
+		<Table overflowX="hidden" overflowY="scroll" {...getTableProps()}>
 			<Thead bg={'#202839'}>
 				{headerGroups.map((headerGroup, index) => (
 					<Tr key={index} {...headerGroup.getHeaderGroupProps()}>
