@@ -37,8 +37,6 @@ export const WrappedSphere = (props: Props) => {
 	useEffect(() => {
 		const coin = CoinManifest.filter((coin) => coin.symbol === data['token1'].symbol);
 		if (coin.length > 0) {
-			// console.log(coin[0]['Image Path']);
-			// setTexturePath('/AAVE.png');
 			setTexturePath(coin[0]['Image Path']);
 		} else if (data['token1'].name === 'Wrapped Ethereum' || data['token1'].name === 'Wrapped Ether') {
 			setTexturePath('/ETH.png');
@@ -51,11 +49,6 @@ export const WrappedSphere = (props: Props) => {
 		}
 	}, []);
 
-	useEffect(() => {
-		console.log(scale([0, 1000], [0, 10])(Math.floor(data['amountUSD'])));
-	}, []);
-
-	// console.log(tokenName)
 	const [ref] = useSphere((index) => ({
 		mass: 100,
 		position: [4 - Math.random() * 8, viewport.height, 0, 0],
@@ -67,7 +60,6 @@ export const WrappedSphere = (props: Props) => {
 	return (
 		<instancedMesh
 			onPointerOver={() => {
-				console.log(data);
 				setTxData(data);
 				setHover(true);
 				setSwapHovered(true);

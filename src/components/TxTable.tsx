@@ -3,13 +3,12 @@ import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { useTable, useSortBy } from 'react-table';
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-// create function that converts a timestamp to date
+
+// converts a timestamp to date
 const convertTimestamp = (timestamp) => {
 	const date = new Date(timestamp * 1000);
 	const hours = date.getHours();
 	const minutes = '0' + date.getMinutes();
-	const seconds = '0' + date.getSeconds();
-	// const ampm = hours >= 12 ? 'pm' : 'am';
 	const formattedTime = hours + ':' + minutes.substr(-2);
 	return formattedTime;
 };
@@ -33,19 +32,7 @@ const getNetworkUrl = (network) => {
 
 export const TxTable = (props) => {
 	const { txData, setAllTransactions } = props;
-	// console.log(txData);
-	// const data = React.useMemo(
-	// 	() => [
-	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
-	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
-	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
-	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
-	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
-	// 		{ amountUSD: '$200', token0: { name: 'BTC' }, token1: { name: 'BTC' } },
-	// 	],
 
-	// 	[],
-	// );
 	const data = React.useMemo(
 		() => txData.slice(0, 20).sort(() => Math.random() - 0.5),
 
@@ -106,7 +93,6 @@ export const TxTable = (props) => {
 				accessor: 'origin',
 				// width: 90,
 				Cell: (row) => {
-					// console.log(row.cell.row.original.Network);
 					return (
 						<Link
 							target="_blank"
@@ -126,15 +112,6 @@ export const TxTable = (props) => {
 				Header: 'Token To',
 				accessor: 'token1.symbol',
 			},
-			// {
-			// 	Header: 'ID',
-			// 	accessor: 'id',
-			// },
-			// {
-			// 	Header: 'Timestamp',
-			// 	accessor: 'timestamp',
-			// 	isNumeric: true,
-			// },
 		],
 		[],
 	);

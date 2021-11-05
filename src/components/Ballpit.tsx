@@ -1,28 +1,12 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { css } from '@emotion/react';
 import { Physics, usePlane, useSphere } from '@react-three/cannon';
 import { OrbitControls, Text } from '@react-three/drei';
-import { WrappedSphere } from './WrappedSphere';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useState } from 'react';
-import { css } from '@emotion/react';
-import ClipLoader from 'react-spinners/ClipLoader';
-import Loader from './LoadingAnimation';
-
-const override = css`
-	display: block;
-	margin: 0 auto;
-	border-color: red;
-`;
-
-function Mouse() {
-	const { viewport } = useThree();
-	const [, api] = useSphere(() => ({ type: 'Kinematic', args: [6] }));
-	return useFrame((state) =>
-		api.position.set((state.mouse.x * viewport.width) / 2, (state.mouse.y * viewport.height) / 2, 7),
-	);
-}
+import { WrappedSphere } from './WrappedSphere';
 
 // A physical plane without visual representation
-function Plane({ color, ...props }) {
+function Plane({ ...props }) {
 	usePlane(() => ({ ...props }));
 	return null;
 }
@@ -32,11 +16,6 @@ const Borders = (props) => {
 	const { txs, settxs, releaseFloor } = props;
 	const { viewport } = useThree();
 
-	// useEffect(() => {
-	// 	if (txs.length > 20) {
-	// 		settxs([]);
-	// 	}
-	// }, [txs]);
 	return (
 		<>
 			{/* This is the base of the container */}
@@ -64,37 +43,28 @@ export default function BallPit(props) {
 	const [loadingColor, setColor] = useState('#ffffff');
 	useEffect(() => {
 		if (data) {
-			// const newCount = count.filter((val) => !data.transactions.includes(val))
-			// console.log(data)
-
 			data.transactions.map((tx) => {
 				const data = tx.swaps[0] ? tx.swaps[0] : null;
 
 				if (!txs.includes(data) && data) {
-					// console.log(tx.swaps[0] ? tx.swaps[0].id : null);
 					settxs((oldArray) => [...oldArray, data]);
 				}
 			});
 		}
-		// console.log(txs);
 	}, [data, txs]);
 
 	useEffect(() => {
 		console.log(txs && txs.length);
-		// setReleaseFloor(true);
 		if (txs.length > 100) {
 			setReleaseFloor(true);
 		}
 		if (txs.length < 100) {
-			// console.log('not releasing floor');
 			setReleaseFloor(false);
-			// settxs([]);
 		}
 	}, [txs]);
 
 	useEffect(() => {
 		if (releaseFloor) {
-			// console.log('releasing floor');
 			setTimeout(() => {
 				settxs([]);
 			}, 2000);
@@ -116,17 +86,6 @@ export default function BallPit(props) {
 			<fog attach="fog" args={['red', 25, 40]} />
 			<color attach="background" args={color} />
 			<ambientLight intensity={2} />
-			{/* <Loader /> */}
-			{/* <Text
-				scale={[10, 10, 10]}
-				color="white" // default
-				position={[-5, 0, 0]}
-				// anchorX="left" // default
-				// anchorY="bottom-baseline"
-				// default
-			>
-				{txData ? txData['token0'].name : null}
-			</Text> */}
 			<Text
 				scale={[10, 10, 10]}
 				color="white" // default
@@ -166,7 +125,6 @@ export default function BallPit(props) {
 					<Borders txs={txs} settxs={settxs} releaseFloor={releaseFloor} />
 					{/* <InstancedSpheres /> */}
 					{txs.map((c, index) => {
-						// console.log(c)
 						return (
 							<WrappedSphere
 								key={index}

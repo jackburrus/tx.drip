@@ -2,11 +2,20 @@ import { Box, Center, chakra, Container, Flex, Text } from '@chakra-ui/react';
 import BallPit from './Ballpit';
 import { TxTable } from './TxTable';
 
+import { Dispatch, SetStateAction } from 'react';
+
 interface PaneTypes {
 	color: string;
 	title: 'Mainnet' | 'Arbitrum' | 'Optimism';
 	type: 'Ball' | 'Stats';
 	data: any;
+	releaseFloor: boolean;
+	setReleaseFloor: Dispatch<SetStateAction<boolean>>;
+	// TODO setup the types for the transaction data
+	setAllTransactions?: Dispatch<SetStateAction<any>>;
+	// TODO setup the types for the swap data
+	setSwapDetails: Dispatch<SetStateAction<any>>;
+	setSwapHovered: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Pane: React.FC<PaneTypes> = (props) => {
@@ -27,11 +36,6 @@ export const Pane: React.FC<PaneTypes> = (props) => {
 		</Flex>
 	) : (
 		<Flex flex="1" position="relative" bg={color}>
-			{/* <Box display={'flex'} position="absolute" top={10} left={20}>
-				<Text fontSize={30} color="white">
-					{title}
-				</Text>
-			</Box> */}
 			<BallPit
 				color={[props.color]}
 				title={title}

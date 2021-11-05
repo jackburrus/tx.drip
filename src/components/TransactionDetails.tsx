@@ -24,7 +24,6 @@ var formatter = new Intl.NumberFormat('en-US', {
 });
 
 const findIcon = (code: string): string => {
-	console.log(code);
 	try {
 		if (code === 'WETH') {
 			return require(`../../node_modules/cryptocurrency-icons/svg/color/ETH.svg`);
