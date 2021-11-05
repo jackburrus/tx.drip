@@ -14,7 +14,6 @@
 <p align="center">
   <a href="#about-the-project">About The Project</a> •
   <a href="#stack">Stack</a> •
-  <a href="#creating-blocks">Creating Blocks</a> •
   <a href="#credits">Credits</a>
 
 </p>
