@@ -6,10 +6,7 @@
   <img src="./public/Cover.png" alt="Logo" >
   <br>Tx.Drip
 </h1>
-  <p align="center">
-    Built for Unicode 2021.
-    <br />
-    </p>
+
 </p>
 <p align="center">
   <a href="#about-the-project">About The Project</a> •
